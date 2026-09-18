@@ -31,7 +31,7 @@ Keywords: typesafe-ai, jev, superpowers, agentic-skills, claude-code, coding-age
 
 By **[Akash Priyadarshi](https://github.com/AkashPriyadarshii)**
 
-[Why](#why) • [Core Superpowers](#core-superpowers) • [Quickstart](#quickstart) • [Architecture](#architecture) • [Non-Goals](#non-goals) • [Ecosystem](#ecosystem)
+[Why](#why) • [Core Superpowers](#core-superpowers) • [The Toolchain Suite](#the-toolchain-suite) • [Quickstart](#quickstart) • [Usage Guide](docs/USAGE.md) • [Architecture](#architecture) • [Non-Goals](#non-goals) • [Ecosystem](#ecosystem)
 
 </div>
 
@@ -69,6 +69,24 @@ Autonomous coding agents equipped with standard development methodologies still 
 | **`jev-executing-plans`** | Execution | `executing-plans` | `jev-guard` command safety + `git-jev` pre-commit reflex gate |
 | **`jev-systematic-debugging`** | Triage | `systematic-debugging` | `jev-axi triage` error analysis + Jev `Score` hypothesis ranking |
 | **`jev-verification`** | Completion | `verification-before-completion` | `limpet` turn stop-hook + `supercov quality` anti-pattern scoring |
+
+---
+
+## The Toolchain Suite
+
+`jev-superpowers` orchestrates dedicated single-purpose tools powered by TypeSafe Jev System One:
+
+| Tool | Role | Install Command | Repository / Package |
+|---|---|---|---|
+| [**`git-jev`**](https://github.com/AkashPriyadarshii/jev-git) | Sub-second Git pre-commit & pre-push reflex gate | Precompiled binary / `cargo install` | [`AkashPriyadarshii/jev-git`](https://github.com/AkashPriyadarshii/jev-git) |
+| [**`jev-scout`**](https://github.com/AkashPriyadarshii/jev-scout) | Zero-hallucination crate & repo scout | `cargo install jev-scout` | [`AkashPriyadarshii/jev-scout`](https://github.com/AkashPriyadarshii/jev-scout) |
+| [**`jev-axi`**](https://www.npmjs.com/package/jev-axi) | Fast System One diff review, error triage & choice pick | `npm install -g jev-axi` | [`npmjs.com/package/jev-axi`](https://www.npmjs.com/package/jev-axi) |
+| [**`jev-guard`**](https://github.com/AkashPriyadarshii) | Destructive shell command filter (<80ms) | Installed with `jev-axi` | `jev-guard "<cmd>"` |
+| [**`supercov`**](https://www.npmjs.com/package/supercov) | Jev code quality & anti-pattern oracle | `npm install -g supercov` | [`npmjs.com/package/supercov`](https://www.npmjs.com/package/supercov) |
+| [**`limpet`**](https://github.com/AkashPriyadarshii) | Agent stop-hook completion policy gate | Precompiled binary | Local stop-hook |
+| [**`jev-seo`**](https://github.com/AkashPriyadarshii/jev-seo) | Zero-cost SEO/GEO audit radar & citation scoring | `cargo install jev-seo` | [`AkashPriyadarshii/jev-seo`](https://github.com/AkashPriyadarshii/jev-seo) |
+
+For detailed recipes and terminal execution traces of each gate, see the **[Full Usage & Recipes Guide (docs/USAGE.md)](docs/USAGE.md)**.
 
 ---
 
@@ -119,6 +137,7 @@ jev-superpowers/
 ├── docs/DESIGN.md                 # System design
 ├── docs/ARCHITECTURE.md           # Architecture flow
 ├── docs/HANDOFF.md                # Maintenance guide
+├── docs/USAGE.md                  # Usage guide & recipes
 ├── memory/DECISIONS.md            # Jev decision log
 ├── scripts/test.ps1               # Windows test harness
 ├── scripts/test.sh                # Unix test harness
