@@ -80,10 +80,10 @@ Autonomous coding agents equipped with standard development methodologies still 
 |---|---|---|---|
 | [**`git-jev`**](https://github.com/AkashPriyadarshii/jev-git) | Sub-second Git pre-commit & pre-push reflex gate | Precompiled binary / `cargo install` | [`AkashPriyadarshii/jev-git`](https://github.com/AkashPriyadarshii/jev-git) |
 | [**`jev-scout`**](https://github.com/AkashPriyadarshii/jev-scout) | Zero-hallucination crate & repo scout | `cargo install jev-scout` | [`AkashPriyadarshii/jev-scout`](https://github.com/AkashPriyadarshii/jev-scout) |
-| [**`jev-axi`**](https://www.npmjs.com/package/jev-axi) | Fast System One diff review, error triage & choice pick | `npm install -g jev-axi` | [`npmjs.com/package/jev-axi`](https://www.npmjs.com/package/jev-axi) |
-| [**`jev-guard`**](https://github.com/AkashPriyadarshii) | Destructive shell command filter (<80ms) | Installed with `jev-axi` | `jev-guard "<cmd>"` |
-| [**`supercov`**](https://www.npmjs.com/package/supercov) | Jev code quality & anti-pattern oracle | `npm install -g supercov` | [`npmjs.com/package/supercov`](https://www.npmjs.com/package/supercov) |
-| [**`limpet`**](https://github.com/AkashPriyadarshii) | Agent stop-hook completion policy gate | Precompiled binary | Local stop-hook |
+| [**`jev-axi`**](https://github.com/shiftynick/jev-axi) | Fast System One diff review, error triage & choice pick | `npm install -g jev-axi` | [`shiftynick/jev-axi`](https://github.com/shiftynick/jev-axi) |
+| [**`jev-guard`**](https://github.com/leepokai/jev-guard) | Destructive shell command filter (<80ms) | Installed with `jev-axi` / standalone | [`leepokai/jev-guard`](https://github.com/leepokai/jev-guard) |
+| [**`supercov`**](https://github.com/supercorp-ai/supercov) | Jev code quality & anti-pattern oracle | `npm install -g supercov` | [`supercorp-ai/supercov`](https://github.com/supercorp-ai/supercov) |
+| [**`limpet`**](https://github.com/KSym04/limpet) | Agent stop-hook completion policy gate | Precompiled binary / `cargo install` | [`KSym04/limpet`](https://github.com/KSym04/limpet) |
 | [**`jev-seo`**](https://github.com/AkashPriyadarshii/jev-seo) | Zero-cost SEO/GEO audit radar & citation scoring | `cargo install jev-seo` | [`AkashPriyadarshii/jev-seo`](https://github.com/AkashPriyadarshii/jev-seo) |
 
 For detailed recipes and terminal execution traces of each gate, see the **[Full Usage & Recipes Guide (docs/USAGE.md)](docs/USAGE.md)**.
