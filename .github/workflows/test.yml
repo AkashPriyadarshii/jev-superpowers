@@ -1,0 +1,14 @@
+name: Test Suite
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run offline test suite
+        run: bash ./scripts/test.sh
