@@ -12,10 +12,11 @@
 |---|---|---|---|
 | **`git-jev`** | Sub-second pre-commit & pre-push reflex gate | Precompiled binary / `cargo install` | [AkashPriyadarshii/jev-git](https://github.com/AkashPriyadarshii/jev-git) |
 | **`jev-scout`** | Zero-hallucination crate & repo verification | `cargo install jev-scout` | [AkashPriyadarshii/jev-scout](https://github.com/AkashPriyadarshii/jev-scout) |
-| **`jev-axi`** | Fast 70–120ms System One diff review & triage | `npm install -g jev-axi` | [npmjs.com/package/jev-axi](https://www.npmjs.com/package/jev-axi) |
-| **`jev-guard`** | Destructive shell command filter | Installed with `jev-axi` | [AkashPriyadarshii/jev-guard](https://github.com/AkashPriyadarshii) |
-| **`supercov`** | Jev-powered code quality & anti-pattern oracle | `npm install -g supercov` | [npmjs.com/package/supercov](https://www.npmjs.com/package/supercov) |
-| **`limpet`** | Agent stop-hook completion policy gate | Precompiled binary on PATH | [AkashPriyadarshii/limpet](https://github.com/AkashPriyadarshii) |
+| **`jev-axi`** | Fast 70–120ms System One diff review & triage | `npm install -g jev-axi` | [shiftynick/jev-axi](https://github.com/shiftynick/jev-axi) |
+| **`jev-guard`** | Destructive shell command filter | Installed with `jev-axi` / standalone | [leepokai/jev-guard](https://github.com/leepokai/jev-guard) |
+| **`supercov`** | Jev-powered code quality & anti-pattern oracle | `npm install -g supercov` | [supercorp-ai/supercov](https://github.com/supercorp-ai/supercov) |
+| **`limpet`** | Agent stop-hook completion policy gate | `cargo install limpet` | [KSym04/limpet](https://github.com/KSym04/limpet) |
+| **`jev-seo`** | Zero-cost SEO/GEO audit radar & citation scoring | `cargo install jev-seo` | [AkashPriyadarshii/jev-seo](https://github.com/AkashPriyadarshii/jev-seo) |
 
 ---
 
