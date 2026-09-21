@@ -35,6 +35,8 @@ By **[Akash Priyadarshi](https://github.com/AkashPriyadarshii)**
 
 </div>
 
+[![stars](https://img.shields.io/github/stars/AkashPriyadarshii/jev-superpowers?style=flat-square&label=stars)](https://github.com/AkashPriyadarshii/jev-superpowers/stargazers) [![release](https://img.shields.io/github/v/release/AkashPriyadarshii/jev-superpowers?style=flat-square&label=release)](https://github.com/AkashPriyadarshii/jev-superpowers/releases)
+
 ---
 
 ## Why
