@@ -41,3 +41,6 @@ If a test fails unexpectedly or an instruction is ambiguous:
 - STOP immediately.
 - Do NOT force changes or attempt blind symptom fixes.
 - Switch to `jev-systematic-debugging`.
+
+## Failure Modes
+See docs/CONFIDENCE.md for thresholds. When the gate tool is missing, the key is invalid, the registry is offline, or confidence falls below the Stop band: STOP, state which input failed, and never degrade to unverified guessing silently.

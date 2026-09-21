@@ -12,6 +12,32 @@
           }
         ]
       }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}/hooks/pre-commit\"",
+            "shell": "bash",
+            "async": false
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}/hooks/stop\"",
+            "shell": "bash",
+            "async": false
+          }
+        ]
+      }
     ]
   }
 }

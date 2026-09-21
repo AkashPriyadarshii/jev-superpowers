@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# PreToolUse gate for git commit / git push. Exits 0 for all other commands.
+# Reads Claude Code hook JSON from stdin; falls back to gating when no input.
+set -uo pipefail
+
+input="$(cat 2>/dev/null || true)"
+if [ -n "$input" ]; then
+    cmd="$(printf '%s' "$input" | grep -o '"command"[[:space:]]*:[[:space:]]*"[^"]*"' | head -1 || true)"
+    case "$cmd" in
+        *git*commit*|*git*push*) ;;
+        *) exit 0 ;;
+    esac
+fi
+
+if ! command -v git >/dev/null 2>&1; then
+    echo "jev-superpowers pre-commit: git not found, blocking." >&2
+    exit 2
+fi
+
+if ! git jev check >/dev/null 2>&1; then
+    echo "jev-superpowers pre-commit: 'git jev check' missing or failed." >&2
+    echo "Run 'git jev check' by hand, fix the findings, then commit again." >&2
+    exit 2
+fi
+
+out=$(git jev check 2>&1)
+if ! printf '%s' "$out" | grep -q "\[PASS\]"; then
+    echo "jev-superpowers pre-commit: gate did not report [PASS], blocking." >&2
+    printf '%s\n' "$out" >&2
+    exit 2
+fi
+
+exit 0

@@ -37,3 +37,6 @@ jev-axi pick "<Tradeoff Question>" \
 
 ### 4. Human Approval Gate
 Present the Jev-scored recommendation in chat. Do NOT touch code or write implementation plans until the human partner says "yes" or selects an alternative.
+
+## Failure Modes
+See docs/CONFIDENCE.md for thresholds. When the gate tool is missing, the key is invalid, the registry is offline, or confidence falls below the Stop band: STOP, state which input failed, and never degrade to unverified guessing silently.

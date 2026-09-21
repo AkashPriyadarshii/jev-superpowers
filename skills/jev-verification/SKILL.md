@@ -38,3 +38,6 @@ limpet check
 ```
 
 Only when all test commands pass, `supercov quality` passes, and `limpet` validates completion may you make the completion claim to the user.
+
+## Failure Modes
+See docs/CONFIDENCE.md for thresholds. When the gate tool is missing, the key is invalid, the registry is offline, or confidence falls below the Stop band: STOP, state which input failed, and never degrade to unverified guessing silently.

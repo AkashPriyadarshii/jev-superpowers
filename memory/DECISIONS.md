@@ -24,5 +24,5 @@ Every architectural and design decision was evaluated deterministically using Ty
 
 5. **Test Suite Architecture**:
    - Question: Should `jev-superpowers` include an offline mock test suite?
-   - Decision: `include_offline_mock_test_suite` ($P = 1.00$, Confidence: $1.00$).
-   - Rationale: Zero-token test execution in GitHub Actions CI.
+    - Decision: `include_offline_mock_test_suite` ($P = 0.95$, Confidence: $0.90$).
+    - Rationale: Zero-token test execution in GitHub Actions CI. (Corrected from 1.00: certainty claims need evidence; see docs/CONFIDENCE.md.)
