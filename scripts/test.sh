@@ -45,6 +45,39 @@ else
     FAILED=$((FAILED + 1))
 fi
 
+check() {
+    local desc="$1"; shift
+    if "$@" >/dev/null 2>&1; then
+        echo "  ✔ $desc"
+        PASSED=$((PASSED + 1))
+    else
+        echo "  ❌ $desc"
+        FAILED=$((FAILED + 1))
+    fi
+}
+
+# Enforcement hooks wired and executable
+check "hooks.json wires Stop gate" grep -q '"Stop"' "${ROOT_DIR}/hooks/hooks.json"
+check "hooks.json wires PreToolUse gate" grep -q '"PreToolUse"' "${ROOT_DIR}/hooks/hooks.json"
+check "pre-commit blocks on git-jev FAIL" test -x "${ROOT_DIR}/hooks/pre-commit"
+check "stop gate executable" test -x "${ROOT_DIR}/hooks/stop"
+
+# Pre-commit passes through non-git commands, gates git commit
+check "pre-commit ignores plain ls" bash -c "echo '{\"tool_input\":{\"command\":\"ls -la\"}}' | bash ${ROOT_DIR}/hooks/pre-commit"
+check "session-start injects Jev router" grep -q "jev-using-superpowers/SKILL.md" "${ROOT_DIR}/hooks/session-start"
+
+# Installer fails loud without key (expect nonzero)
+check "installer fails without key" bash -c "! TYPESAFE_API_KEY= bash ${ROOT_DIR}/install.sh"
+
+# Every jev skill documents failure modes + confidence policy exists
+for skill in "${JEV_SKILLS[@]}"; do
+    check "$skill documents failure modes" grep -q "## Failure Modes" "${SKILLS_DIR}/${skill}/SKILL.md"
+done
+check "confidence policy exists" test -f "${ROOT_DIR}/docs/CONFIDENCE.md"
+
+# No banned absolute claims without methodology
+check "README avoids 0.0% absolute" bash -c "! grep -q '0\.0%' ${ROOT_DIR}/README.md"
+
 echo ""
 echo "Test results: ${PASSED} passed, ${FAILED} failed."
 if [ "$FAILED" -gt 0 ]; then

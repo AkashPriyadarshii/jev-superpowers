@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Stop-hook verification gate. Blocks turn completion with uncommitted
+# changes or failing tests. wired in hooks.json as Stop.
+set -uo pipefail
+
+if command -v git >/dev/null 2>&1 && git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    if [ -n "$(git status --porcelain 2>/dev/null)" ]; then
+        echo "jev-superpowers stop: uncommitted changes remain. Commit or stash before finishing." >&2
+        exit 2
+    fi
+fi
+
+if [ -f "./scripts/test.sh" ]; then
+    if ! bash ./scripts/test.sh >/dev/null 2>&1; then
+        echo "jev-superpowers stop: scripts/test.sh fails. Fix before finishing." >&2
+        exit 2
+    fi
+fi
+
+exit 0

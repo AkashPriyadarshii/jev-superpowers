@@ -21,26 +21,48 @@ Write-Host "✔ Skills installed to $targetDir" -ForegroundColor Green
 # Check tooling
 Write-Host "`n🔍 Checking TypeSafe Jev tooling on PATH..." -ForegroundColor Cyan
 
+$missing = 0
+
 function Check-Tool ($tool, $installCmd) {
     $cmd = Get-Command $tool -ErrorAction SilentlyContinue
     if ($cmd) {
         Write-Host "  ✔ $tool found ($($cmd.Source))" -ForegroundColor Green
     } else {
-        Write-Host "  ⚠ $tool missing! Install via: $installCmd" -ForegroundColor Yellow
+        Write-Host "  ✘ $tool MISSING! Install via: $installCmd" -ForegroundColor Red
+        $script:missing++
+    }
+}
+
+function Check-GitSubcommand ($name, $installCmd) {
+    git $name --version 2>$null
+    if ($LASTEXITCODE -eq 0) {
+        Write-Host "  ✔ git $name found" -ForegroundColor Green
+    } else {
+        Write-Host "  ✘ git $name MISSING! Install via: $installCmd" -ForegroundColor Red
+        $script:missing++
     }
 }
 
 Check-Tool "jev-scout" "cargo install jev-scout"
 Check-Tool "jev-axi" "npm install -g jev-axi"
-Check-Tool "git-jev" "git jev install"
+Check-GitSubcommand "jev" "git jev install"
+Check-Tool "jev-guard" "npm install -g jev-guard"
 Check-Tool "supercov" "npm install -g supercov"
+Check-Tool "limpet" "npm install -g limpet"
+Check-Tool "jev-seo" "cargo install jev-seo"
 
 if (!$env:TYPESAFE_API_KEY) {
-    Write-Host "`n⚠ TYPESAFE_API_KEY environment variable is not set." -ForegroundColor Yellow
+    Write-Host "`n✘ TYPESAFE_API_KEY environment variable is not set." -ForegroundColor Red
     Write-Host "  Get your free API key at: https://console.typesafe.ai"
     Write-Host "  Set it in PowerShell with: `$env:TYPESAFE_API_KEY = 'your_key'"
+    $missing++
 } else {
     Write-Host "✔ TYPESAFE_API_KEY is configured." -ForegroundColor Green
+}
+
+if ($missing -gt 0) {
+    Write-Host "`n❌ Install incomplete: $missing missing requirement(s). Fix the lines above, then re-run." -ForegroundColor Red
+    exit 1
 }
 
 Write-Host "`n🚀 jev-superpowers ready! Use 'jev-using-superpowers' or 'jev-brainstorming' in your agent sessions." -ForegroundColor Cyan

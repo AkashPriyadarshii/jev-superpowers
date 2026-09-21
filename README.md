@@ -50,13 +50,15 @@ Autonomous coding agents equipped with standard development methodologies still 
 
 ### Empirical Benchmarks
 
+Design targets measured on the maintainer setup; reproduce with `scripts/test.sh` plus your own Jev usage logs before quoting them:
+
 | Metric | Standard Agent Superpowers | `jev-superpowers` Upgrade |
 |---|---|---|
-| **Package Hallucination Rate** | ~14% unvetted libraries | **0.0%** (pre-screened via `jev-scout`) |
-| **Architectural Gate Latency** | 3.5s – 12s (generative LLM) | **70ms – 120ms** (TypeSafe Jev System One) |
-| **Per-Decision Verification Cost** | ~$0.015 – $0.030 | **$0.00001** (250k tok/sec, $0.042/Mtok) |
+| **Package Hallucination Rate** | ~14% unvetted libraries | **near 0%** when every dependency passes `jev-scout` |
+| **Architectural Gate Latency** | 3.5s – 12s (generative LLM) | **~70ms – 120ms** typical Jev round trip |
+| **Per-Decision Verification Cost** | ~$0.015 – $0.030 | **~$0.00001** at $0.042/Mtok input |
 | **Pre-Commit Diff Screening** | Manual / none | **Sub-second automated gate** (`git-jev`) |
-| **Local Test Suite Run** | N/A | **< 400ms** (7/7 passing offline tests) |
+| **Local Test Suite Run** | N/A | offline suite, see `scripts/test.sh` |
 
 ---
 

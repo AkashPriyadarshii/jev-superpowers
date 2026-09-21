@@ -33,3 +33,6 @@ All skills require local Jev tooling:
 
 If `$TYPESAFE_API_KEY` is missing: **STOP IMMEDIATELY**.
 Direct user to export `TYPESAFE_API_KEY` before proceeding. Never fall back to unverified LLM guessing silently.
+
+## Failure Modes
+See docs/CONFIDENCE.md for thresholds. When the gate tool is missing, the key is invalid, the registry is offline, or confidence falls below the Stop band: STOP, state which input failed, and never degrade to unverified guessing silently.
