@@ -171,10 +171,18 @@ jev-superpowers/
 
 ## Ecosystem
 
-* [design-genius](https://github.com/AkashPriyadarshii/design-genius) — Autonomous design system intelligence for web applications
-* [akash-design-engineering](https://github.com/AkashPriyadarshii/akash-design-engineering) — High-performance editorial brutalist design tokens and cookbook
+* [jev-seo](https://github.com/AkashPriyadarshii/jev-seo) — FOSS zero-cost SEO & GEO search radar with TypeSafe Jev
+* [jev-curate](https://github.com/AkashPriyadarshii/jev-curate) — Jev-curated content toolkit
 * [tdlib-android](https://github.com/AkashPriyadarshii/tdlib-android) — Precompiled TDLib native binaries for all 4 Android ABIs
 * [kharcha](https://github.com/AkashPriyadarshii/kharcha) — India-first offline-first UPI expense tracker for Android
+
+---
+
+## Star History
+
+<a href="https://www.star-history.com/?repos=akashpriyadarshii%2Fjev-superpowers&type=date&legend=top-left">
+  <img src="https://api.star-history.com/svg?repos=akashpriyadarshii%2Fjev-superpowers&type=date&legend=top-left" alt="Star History Chart">
+</a>
 
 ---
 
