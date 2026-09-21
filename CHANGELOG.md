@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fail-loud installers checking all 7 tools plus key validation.
 - `docs/CONFIDENCE.md` single threshold table and Failure Modes in all 6 skills.
 - Test suite expanded to 22 checks covering hooks, installer failure, and prose claims.
+## [1.0.0] - 2026-09-21
+
+### Added
+- Release workflow: tag-based GitHub Release with auto-generated notes on `v*`, gated by the offline test suite.
 
 ## [0.1.0] - 2026-09-18
 
