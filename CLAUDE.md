@@ -16,3 +16,5 @@ An agentic skills framework upgrading software development methodologies (`obra/
 ## Rule of Precedence
 1. Global Rules (`~/.gemini/GEMINI.md` / `C:\Users\saves\AGENTS.md`)
 2. Project Rules (`AGENTS.md` / `CLAUDE.md` in repository root)
+
+- Profile: release-order touch 2026-09-22
