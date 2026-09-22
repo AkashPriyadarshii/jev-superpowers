@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Skills &amp; Workflows : jev-superpowers</title>
+  <meta name="description" content="In-depth specifications of the 6 core Jev System One agent skills: router, brainstorming, plan scouting, guarded execution, triage, and stop gate.">
+  <link rel="canonical" href="https://jev-superpowers.vercel.app/workflows.html">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jev-superpowers.vercel.app/workflows.html">
+  <meta property="og:title" content="Skills &amp; Workflows : jev-superpowers">
+  <meta property="og:description" content="In-depth specifications of the 6 core Jev System One agent skills: router, brainstorming, plan scouting, guarded execution, triage, and stop gate.">
+  <meta property="og:site_name" content="jev-superpowers">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Skills &amp; Workflows : jev-superpowers">
+  <meta name="twitter:description" content="In-depth specifications of the 6 core Jev System One agent skills.">
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Skills & Workflows : jev-superpowers",
+    "url": "https://jev-superpowers.vercel.app/workflows.html",
+    "description": "In-depth specifications of the 6 core Jev System One agent skills: router, brainstorming, plan scouting, guarded execution, triage, and stop gate.",
+    "author": {
+      "@type": "Person",
+      "name": "Akash Priyadarshi"
+    }
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <a href="index.html" class="logo">jev-superpowers<sup>hooks</sup></a>
+    <nav class="site-nav" aria-label="Main Navigation">
+      <a href="workflows.html" style="color:var(--pink);">Skills &amp; Workflows</a>
+      <a href="system-one.html">System One</a>
+      <a href="matrix.html">Agent Matrix</a>
+      <a href="hooks.html">Hooks Spec</a>
+      <a href="telemetry.html">Telemetry</a>
+      <a href="lexicon.html">Lexicon</a>
+    </nav>
+    <a href="https://github.com/AkashPriyadarshii/jev-superpowers" class="btn btn-primary" rel="noopener">GitHub &star;</a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile Navigation">
+    <div class="mobile-nav-inner">
+      <a href="workflows.html">Skills &amp; Workflows</a>
+      <a href="system-one.html">System One</a>
+      <a href="matrix.html">Agent Matrix</a>
+      <a href="hooks.html">Hooks Spec</a>
+      <a href="telemetry.html">Telemetry</a>
+      <a href="lexicon.html">Lexicon</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="https://github.com/AkashPriyadarshii/jev-superpowers" class="btn btn-primary">GitHub &star;</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero" style="border-bottom: 1px solid var(--grey-2); padding-bottom: 40px;">
+      <div class="container">
+        <p class="eyebrow">Framework Architecture</p>
+        <h1 style="font-size: clamp(34px, 5vw, 56px);">The 6 Core Superpower Skills</h1>
+        <p class="lead">
+          Every coding agent task passes through discrete engineering milestones. These 6 skills replace conversational guesswork with typed System One judgments and sub-second binary gates.
+        </p>
+      </div>
+    </section>
+
+    <!-- SKILL 1: ROUTER -->
+    <section style="border-bottom: 1px solid var(--grey-2);">
+      <div class="container">
+        <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:12px;">
+          <h2>1. jev-using-superpowers</h2>
+          <span class="skill-badge">Router &middot; Choice</span>
+        </div>
+        <p class="lead">The meta-dispatcher invoked at session start, turn start, and complex task decomposition.</p>
+        <p>
+          Unguided agents jump directly into modifying files without evaluating task ambiguity. <code>jev-using-superpowers</code> inspects prompt context and repository status in 70ms to select the required workflow:
+        </p>
+        <ul style="margin: 16px 0 20px 24px; line-height: 1.8;">
+          <li><strong>Brainstorming</strong>: If user requirements contain ambiguities, open-ended architecture questions, or multi-library tradeoffs.</li>
+          <li><strong>Planning</strong>: If scope touches more than 2 files or requires new crate/npm dependencies.</li>
+          <li><strong>Executing</strong>: When an approved plan exists, driving disciplined TDD steps with pre-commit gates.</li>
+          <li><strong>Systematic Debugging</strong>: When tests fail, logs crash, or an unexpected runtime error occurs.</li>
+        </ul>
+        <div class="code-block">
+          <pre><code># Session-start hook triggers router evaluation:
+jev-axi eval "Route workflow for: 'Refactor SQLite connection pool to support WAL mode'" \
+  --options "brainstorm,plan,execute,debug" \
+  --context "$GIT_STATUS"</code></pre>
+          <button class="copy-btn" data-copy="jev-axi eval &quot;Route workflow for: 'Refactor SQLite connection pool to support WAL mode'&quot; --options &quot;brainstorm,plan,execute,debug&quot;">copy</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILL 2: BRAINSTORMING -->
+    <section style="border-bottom: 1px solid var(--grey-2);">
+      <div class="container">
+        <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:12px;">
+          <h2>2. jev-brainstorming</h2>
+          <span class="skill-badge">Ideate &middot; jev-axi pick</span>
+        </div>
+        <p class="lead">Structured architectural design divergence and trade-off evaluation before code generation.</p>
+        <p>
+          Forces agents to propose 2 to 3 distinct implementation approaches (e.g. Minimal Stdlib, High-Throughput Batching, or External Engine). Instead of the agent picking arbitrarily based on token probabilities, it executes <code>jev-axi pick</code>:
+        </p>
+        <div class="code-block">
+          <pre><code># Rank 3 design approaches against project constraints:
+jev-axi pick "Select optimal cache layer" \
+  --candidates "approaches.json" \
+  --criteria "Memory budget &lt; 50MB, zero new native deps, sub-millisecond lookups"</code></pre>
+          <button class="copy-btn" data-copy="jev-axi pick &quot;Select optimal cache layer&quot; --candidates &quot;approaches.json&quot; --criteria &quot;Memory budget &lt; 50MB, zero new native deps, sub-millisecond lookups&quot;">copy</button>
+        </div>
+        <p style="font-size:15px; color:var(--grey-1); margin-top:12px;">
+          Output yields a typed decision with confidence score. If confidence &lt; 0.80, the agent is barred from proceeding without explicit user confirmation.
+        </p>
+      </div>
+    </section>
+
+    <!-- SKILL 3: WRITING PLANS -->
+    <section style="border-bottom: 1px solid var(--grey-2);">
+      <div class="container">
+        <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:12px;">
+          <h2>3. jev-writing-plans</h2>
+          <span class="skill-badge">Scout &middot; jev-scout</span>
+        </div>
+        <p class="lead">Implementation plan generation paired with speculative dependency vetting.</p>
+        <p>
+          Coding agents frequently hallucinate non-existent package names or select abandoned, vulnerable libraries. In <code>jev-writing-plans</code>, every proposed third-party crate or npm package is vetted through <code>jev-scout</code>:
+        </p>
+        <div class="code-block">
+          <pre><code># Scout real open-source crates with Jev System One fan-out scoring:
+jev-scout "fast zero-copy trigram search"
+
+# Returns:
+# 1. tgrep (score: 9.8, verified real, 12ms cold start)
+# 2. fst (score: 9.1, standard finite state transducer)
+# Hallucinated entries scored 0.0 and purged from prompt memory.</code></pre>
+          <button class="copy-btn" data-copy="jev-scout &quot;fast zero-copy trigram search&quot;">copy</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILL 4: EXECUTING PLANS -->
+    <section style="border-bottom: 1px solid var(--grey-2);">
+      <div class="container">
+        <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:12px;">
+          <h2>4. jev-executing-plans</h2>
+          <span class="skill-badge">Guard &middot; jev-guard &amp; git-jev</span>
+        </div>
+        <p class="lead">Step-by-step TDD execution with runtime command guards and git pre-commit reflex checks.</p>
+        <p>
+          Executes one bite-sized task at a time. Before running shell commands, <code>jev-guard</code> filters out accidental rm -rf, broad find-deletes, or production leaks. Before creating git commits, <code>git-jev</code> gates the diff:
+        </p>
+        <div class="code-block">
+          <pre><code># Shell guard halts destructive commands:
+jev-guard "git checkout -f master &amp;&amp; git clean -fdx"
+# [BLOCKED] Destructive command detected &middot; confidence: 0.99 &middot; requires manual confirmation
+
+# Pre-commit gate validates staged changes:
+git jev check
+# Evaluates diff against architectural invariants in 110ms.</code></pre>
+          <button class="copy-btn" data-copy="git jev check">copy</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILL 5: SYSTEMATIC DEBUGGING -->
+    <section style="border-bottom: 1px solid var(--grey-2);">
+      <div class="container">
+        <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:12px;">
+          <h2>5. jev-systematic-debugging</h2>
+          <span class="skill-badge">Triage &middot; jev-axi triage</span>
+        </div>
+        <p class="lead">4-phase root-cause diagnosis without prompt context bloating.</p>
+        <p>
+          Dumping raw 2,000-line compiler errors or stack traces into agent context causes context rot and hallucinated explanations. <code>jev-systematic-debugging</code> pipes terminal output directly through Jev triage:
+        </p>
+        <div class="code-block">
+          <pre><code># Filter noisy build failure into root cause and exact failure location:
+cargo test 2&gt;&amp;1 | jev-axi triage
+
+# Output:
+# [ROOT CAUSE] Lifetime mismatch: borrowed value 'pool' does not live long enough
+# [LOCATION] src/db/pool.rs:142:18
+# [CONFIDENCE] 0.96</code></pre>
+          <button class="copy-btn" data-copy="cargo test 2&gt;&amp;1 | jev-axi triage">copy</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILL 6: VERIFICATION -->
+    <section>
+      <div class="container">
+        <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:12px;">
+          <h2>6. jev-verification</h2>
+          <span class="skill-badge">Stop Gate &middot; limpet</span>
+        </div>
+        <p class="lead">Physical gate barring agents from declaring completion without empirical verification.</p>
+        <p>
+          Agents love to say "All done! I have implemented the requested feature." while unit tests fail or code coverage drops. <code>jev-verification</code> binds to the agent harness's Stop hook via <code>limpet</code>:
+        </p>
+        <div class="code-block">
+          <pre><code># Stop gate executes when agent attempts to terminate turn:
+limpet check
+
+# Checks:
+# 1. Zero compiler errors
+# 2. All unit and integration test assertions green
+# 3. Supercov quality score &gt;= 0.85
+# If any check fails, limpet exits 1 and feeds failure back to the agent runtime.</code></pre>
+          <button class="copy-btn" data-copy="limpet check">copy</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- AUTHOR SLAB -->
+    <section>
+      <div class="container">
+        <div class="author-slab">
+          <div>
+            <span class="author-tag">FRAMEWORK ARCHITECT</span>
+            <h3 class="author-name">Akash Priyadarshi</h3>
+            <p class="author-location">Patna, Bihar, India</p>
+            <p class="author-bio">
+              Software engineer specializing in AI agent security, sub-second decision oracles, and deterministic developer tooling. Creator of jev-superpowers, jev-seo, jev-curate, and tdlib-android.
+            </p>
+          </div>
+          <div class="author-links">
+            <a href="https://github.com/AkashPriyadarshii" class="author-link" rel="noopener">GitHub</a>
+            <a href="https://akashpriyadarshi.vercel.app" class="author-link" rel="noopener">Portfolio</a>
+            <a href="https://linkedin.com/in/akash-priyadarshi-1aa51b37a" class="author-link" rel="noopener">LinkedIn</a>
+            <a href="https://akashpriyadarshii.github.io/Resume/" class="author-link" rel="noopener">Resume</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="workflows.html">Skills &amp; Workflows</a></li>
+          <li><a href="system-one.html">System One</a></li>
+          <li><a href="matrix.html">Agent Matrix</a></li>
+          <li><a href="hooks.html">Hooks Spec</a></li>
+          <li><a href="telemetry.html">Telemetry</a></li>
+          <li><a href="lexicon.html">Lexicon</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Ecosystem</h4>
+        <ul>
+          <li><a href="https://github.com/AkashPriyadarshii/jev-seo" rel="noopener">jev-seo</a></li>
+          <li><a href="https://github.com/AkashPriyadarshii/jev-superpowers" rel="noopener">jev-superpowers</a></li>
+          <li><a href="https://github.com/AkashPriyadarshii/jev-curate" rel="noopener">jev-curate</a></li>
+          <li><a href="https://github.com/AkashPriyadarshii/jev-git" rel="noopener">jev-git</a></li>
+          <li><a href="https://github.com/AkashPriyadarshii/tdlib-android" rel="noopener">tdlib-android</a></li>
+          <li><a href="https://github.com/AkashPriyadarshii/kharcha" rel="noopener">kharcha</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Author</h4>
+        <ul>
+          <li>Akash Priyadarshi</li>
+          <li>Patna, Bihar, India</li>
+          <li><a href="https://github.com/AkashPriyadarshii" rel="noopener">GitHub Profile</a></li>
+          <li><a href="https://akashpriyadarshi.vercel.app" rel="noopener">Personal Portfolio</a></li>
+          <li><a href="https://linkedin.com/in/akash-priyadarshi-1aa51b37a" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://akashpriyadarshii.github.io/Resume/" rel="noopener">Resume</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Social</h4>
+        <ul>
+          <li><a href="https://x.com/Akash__ydv001" rel="noopener">X / Twitter (@Akash__ydv001)</a></li>
+          <li><a href="https://www.threads.net/@akash.priyadarshii" rel="noopener">Threads (@akash.priyadarshii)</a></li>
+          <li><a href="https://www.instagram.com/akash.priyadarshii/" rel="noopener">Instagram (@akash.priyadarshii)</a></li>
+          <li><a href="https://reddit.com/user/DragonfruitWeak2801" rel="noopener">Reddit (u/DragonfruitWeak2801)</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Akash Priyadarshi. Distributed under MIT License. Zero tracking, zero telemetry.
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
