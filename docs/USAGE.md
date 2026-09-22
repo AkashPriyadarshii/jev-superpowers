@@ -126,10 +126,7 @@ Autonomous agents frequently say "All done!" while tests are broken or unexecute
    Ensures zero weak files or architectural anti-patterns exist.
 
 2. **Stop policy verification**:
-   ```bash
-   limpet check
-   ```
-   If acceptance criteria from the plan remain unproven, the agent cannot finish its turn.
+   If [`limpet`](https://github.com/noplan-inc/limpet) is installed, its Stop hook automatically intercepts turn completion, judging transcript completeness against `~/.limpet/rules.md` with TypeSafe Jev. If acceptance criteria from the plan remain unproven, the agent is blocked from completing prematurely.
 
 ---
 
