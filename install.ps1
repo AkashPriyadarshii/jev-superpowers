@@ -48,7 +48,13 @@ Check-Tool "jev-axi" "npm install -g jev-axi"
 Check-GitSubcommand "jev" "git jev install"
 Check-Tool "jev-guard" "npm install -g jev-guard"
 Check-Tool "supercov" "npm install -g supercov"
-Check-Tool "limpet" "npm install -g limpet"
+$limpetInstalled = (Test-Path "$HOME\limpet\limpet.py") -or (Get-Command limpet -ErrorAction SilentlyContinue)
+if ($limpetInstalled) {
+    Write-Host "  ✔ limpet found" -ForegroundColor Green
+} else {
+    Write-Host "  ✘ limpet MISSING! Install via: git clone https://github.com/noplan-inc/limpet `$HOME\limpet" -ForegroundColor Red
+    $missing++
+}
 Check-Tool "jev-seo" "cargo install jev-seo"
 
 if (!$env:TYPESAFE_API_KEY) {
@@ -61,8 +67,10 @@ if (!$env:TYPESAFE_API_KEY) {
 }
 
 if ($missing -gt 0) {
-    Write-Host "`n❌ Install incomplete: $missing missing requirement(s). Fix the lines above, then re-run." -ForegroundColor Red
-    exit 1
+    Write-Host "`n⚠️  Skills installed successfully, but $missing prerequisite tool(s) were not detected." -ForegroundColor Yellow
+    Write-Host "   Install the missing tools above to activate their respective Jev reflex gates." -ForegroundColor Yellow
+} else {
+    Write-Host "`n✔ All TypeSafe Jev tools and environment variables verified!" -ForegroundColor Green
 }
 
 Write-Host "`n🚀 jev-superpowers ready! Use 'jev-using-superpowers' or 'jev-brainstorming' in your agent sessions." -ForegroundColor Cyan

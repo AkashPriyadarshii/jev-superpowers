@@ -87,7 +87,7 @@ Design targets measured on the maintainer setup; reproduce with `scripts/test.sh
 | [**`jev-axi`**](https://github.com/shiftynick/jev-axi) | Fast System One diff review, error triage & choice pick | `npm install -g jev-axi` | [`shiftynick/jev-axi`](https://github.com/shiftynick/jev-axi) |
 | [**`jev-guard`**](https://github.com/leepokai/jev-guard) | Destructive shell command filter (<80ms) | Installed with `jev-axi` / standalone | [`leepokai/jev-guard`](https://github.com/leepokai/jev-guard) |
 | [**`supercov`**](https://github.com/supercorp-ai/supercov) | Jev code quality & anti-pattern oracle | `npm install -g supercov` | [`supercorp-ai/supercov`](https://github.com/supercorp-ai/supercov) |
-| [**`limpet`**](https://github.com/KSym04/limpet) | Agent stop-hook completion policy gate | Precompiled binary / `cargo install` | [`KSym04/limpet`](https://github.com/KSym04/limpet) |
+| [**`limpet`**](https://github.com/noplan-inc/limpet) | Agent stop-hook completion policy gate | `git clone https://github.com/noplan-inc/limpet` / Claude plugin | [`noplan-inc/limpet`](https://github.com/noplan-inc/limpet) |
 | [**`jev-seo`**](https://github.com/AkashPriyadarshii/jev-seo) | Zero-cost SEO/GEO audit radar & citation scoring | `cargo install jev-seo` | [`AkashPriyadarshii/jev-seo`](https://github.com/AkashPriyadarshii/jev-seo) |
 
 For detailed recipes and terminal execution traces of each gate, see the **[Full Usage & Recipes Guide (docs/USAGE.md)](docs/USAGE.md)**.
@@ -175,6 +175,7 @@ jev-superpowers/
 
 * [jev-seo](https://github.com/AkashPriyadarshii/jev-seo) — FOSS zero-cost SEO & GEO search radar with TypeSafe Jev
 * [jev-curate](https://github.com/AkashPriyadarshii/jev-curate) — Jev-curated content toolkit
+* [jev-git](https://github.com/AkashPriyadarshii/jev-git) — Sub-second Git pre-commit & pre-push semantic reflex gate powered by TypeSafe Jev
 * [tdlib-android](https://github.com/AkashPriyadarshii/tdlib-android) — Precompiled TDLib native binaries for all 4 Android ABIs
 * [kharcha](https://github.com/AkashPriyadarshii/kharcha) — India-first offline-first UPI expense tracker for Android
 

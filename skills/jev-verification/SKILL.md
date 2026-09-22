@@ -31,13 +31,17 @@ supercov quality <src-dir>
 - If anti-patterns are flagged, address the root smell before claiming completion.
 
 ### Step 3: Stop-Policy Verification (`limpet`)
-Run `limpet check` to verify that all requirements defined in the initial user prompt have been tested and satisfied:
+Verify that all requirements defined in the initial user prompt have been tested and satisfied. If `limpet` (https://github.com/noplan-inc/limpet) is installed, it operates as an automated agent Stop hook that prevents the agent from ending the turn prematurely without meeting defined stop criteria:
 
 ```bash
-limpet check
+# Automated Hook: Intercepts Stop event in Claude Code / Codex / Antigravity
+# Rule evaluation against ~/.limpet/rules.md judged by TypeSafe Jev
+
+# Manual transcript review / calibration:
+python3 ~/limpet/limpet.py suggest
 ```
 
-Only when all test commands pass, `supercov quality` passes, and `limpet` validates completion may you make the completion claim to the user.
+Only when all test commands pass, `supercov quality` passes with 0 critical anti-patterns, and all requirements are proven may you declare the task complete.
 
 ## Failure Modes
 See docs/CONFIDENCE.md for thresholds. When the gate tool is missing, the key is invalid, the registry is offline, or confidence falls below the Stop band: STOP, state which input failed, and never degrade to unverified guessing silently.
