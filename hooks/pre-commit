@@ -17,15 +17,11 @@ if ! command -v git >/dev/null 2>&1; then
     exit 2
 fi
 
-if ! git jev check >/dev/null 2>&1; then
-    echo "jev-superpowers pre-commit: 'git jev check' missing or failed." >&2
-    echo "Run 'git jev check' by hand, fix the findings, then commit again." >&2
-    exit 2
-fi
-
 out=$(git jev check 2>&1)
-if ! printf '%s' "$out" | grep -q "\[PASS\]"; then
-    echo "jev-superpowers pre-commit: gate did not report [PASS], blocking." >&2
+status=$?
+
+if [ $status -ne 0 ] || ! printf '%s' "$out" | grep -q "\[PASS\]"; then
+    echo "jev-superpowers pre-commit: 'git jev check' failed or did not report [PASS], blocking." >&2
     printf '%s\n' "$out" >&2
     exit 2
 fi

@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
@@ -9,7 +9,9 @@ const BOOTSTRAP_MARKER = "superpowers:using-superpowers bootstrap for pi";
 const extensionDir = dirname(fileURLToPath(import.meta.url));
 const packageRoot = resolve(extensionDir, "../..");
 const skillsDir = resolve(packageRoot, "skills");
-const bootstrapSkillPath = resolve(skillsDir, "using-superpowers", "SKILL.md");
+const primarySkillPath = resolve(skillsDir, "jev-using-superpowers", "SKILL.md");
+const fallbackSkillPath = resolve(skillsDir, "using-superpowers", "SKILL.md");
+const bootstrapSkillPath = existsSync(primarySkillPath) ? primarySkillPath : fallbackSkillPath;
 
 let cachedBootstrap: string | null | undefined;
 

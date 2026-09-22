@@ -21,20 +21,54 @@ import os
 import re
 import sys
 from http.server import BaseHTTPRequestHandler, HTTPServer
+from typing import Any, Dict, List, Tuple, Union
+
+# Defaults and Constants
+DEFAULT_PORT: int = 8000
+DEFAULT_HOST: str = "127.0.0.1"
+
+# Heuristic weights and probabilities (avoids magic values)
+WEIGHT_STATE_MATCH: float = 2.0
+WEIGHT_BASE_EPSILON: float = 0.1
+PROB_HIGH_RISK_MATCH: float = 0.95
+PROB_LOW_RISK_CLEAN: float = 0.01
+PROB_HIGH_ERROR_MATCH: float = 0.88
+PROB_LOW_ERROR_CLEAN: float = 0.04
+PROB_DEFAULT_FLOOR: float = 0.01
+PROB_DEFAULT_CEILING: float = 0.99
+DEFAULT_SCORE_FALLBACK: float = 5.0
+DEFAULT_CONFIDENCE_FALLBACK: float = 0.5
+
+DANGER_KEYWORDS: Tuple[str, ...] = (
+    "rm -rf",
+    "drop table",
+    "format",
+    "secret",
+    "delete",
+    "destroy",
+    "unauthorized",
+    "fail",
+)
+
+ERROR_KEYWORDS: Tuple[str, ...] = (
+    "error",
+    "failed",
+    "panic",
+    "traceback",
+    "exception",
+)
 
 # Check for genuine Laya installation
-LAYA_AVAILABLE = False
-laya_engine = None
-
+LAYA_AVAILABLE: bool = False
 try:
-    import laya  # type: ignore
+    import laya  # type: ignore # noqa: F401
     LAYA_AVAILABLE = True
 except ImportError:
     LAYA_AVAILABLE = False
 
 
-def score_text_overlap(query_text, text_to_match):
-    """Simple token overlap score with length normalization."""
+def score_text_overlap(query_text: str, text_to_match: str) -> float:
+    """Calculate token overlap score with length normalization."""
     if not query_text or not text_to_match:
         return 0.0
     tokens_a = set(re.findall(r"\w+", str(query_text).lower()))
@@ -45,26 +79,24 @@ def score_text_overlap(query_text, text_to_match):
     return len(intersection) / math.sqrt(len(tokens_a) * len(tokens_b))
 
 
-def evaluate_choice(state_str, question):
+def evaluate_choice(state_str: str, question: Dict[str, Any]) -> Dict[str, Any]:
     criteria = question.get("criteria", {})
     instructions = question.get("instructions", "")
-    
+
     if not criteria:
         return {"choice": None, "probabilities": {}, "confidence": 0.0}
 
-    # If criteria is a list
     if isinstance(criteria, list):
-        options = {str(opt): str(opt) for opt in criteria}
+        options: Dict[str, str] = {str(opt): str(opt) for opt in criteria}
     else:
-        options = criteria
+        options = {str(k): str(v) for k, v in criteria.items()}
 
-    scores = {}
+    scores: Dict[str, float] = {}
     for key, desc in options.items():
-        desc_str = str(desc) if desc else key
-        # Combined score: match with instructions and match with state
+        desc_str = desc if desc else key
         state_match = score_text_overlap(state_str, f"{key} {desc_str}")
         inst_match = score_text_overlap(instructions, f"{key} {desc_str}")
-        scores[key] = (state_match * 2.0) + inst_match + 0.1
+        scores[key] = (state_match * WEIGHT_STATE_MATCH) + inst_match + WEIGHT_BASE_EPSILON
 
     # Softmax normalization
     max_score = max(scores.values()) if scores else 1.0
@@ -78,19 +110,20 @@ def evaluate_choice(state_str, question):
     return {
         "choice": best_choice,
         "probabilities": probs,
-        "confidence": confidence
+        "confidence": confidence,
     }
 
 
-def evaluate_score(state_str, question):
+def evaluate_score(state_str: str, question: Dict[str, Any]) -> Dict[str, Any]:
     criteria = question.get("criteria", {})
     if not criteria:
-        return {"score": 5.0, "probabilities": {}, "confidence": 0.5}
+        return {
+            "score": DEFAULT_SCORE_FALLBACK,
+            "probabilities": {},
+            "confidence": DEFAULT_CONFIDENCE_FALLBACK,
+        }
 
-    keys = sorted(criteria.keys(), key=lambda k: float(k) if k.replace(".", "", 1).isdigit() else 0)
     choice_res = evaluate_choice(state_str, question)
-    
-    # Calculate expected fractional score
     expected_score = 0.0
     for k, p in choice_res["probabilities"].items():
         val = float(k) if k.replace(".", "", 1).isdigit() else 1.0
@@ -99,35 +132,33 @@ def evaluate_score(state_str, question):
     return {
         "score": round(expected_score, 2),
         "probabilities": choice_res["probabilities"],
-        "confidence": choice_res["confidence"]
+        "confidence": choice_res["confidence"],
     }
 
 
-def evaluate_noul(state_str, question):
+def evaluate_noul(state_str: str, question: Dict[str, Any]) -> Dict[str, float]:
     instructions = question.get("instructions", "").lower()
     state_lower = state_str.lower()
 
-    # Risk signals for security / destructive checks
-    danger_signals = ["rm -rf", "drop table", "format", "secret", "delete", "destroy", "unauthorized", "fail"]
-    matched_danger = any(sig in state_lower for sig in danger_signals)
+    matched_danger = any(sig in state_lower for sig in DANGER_KEYWORDS)
+    matched_error = any(sig in state_lower for sig in ERROR_KEYWORDS)
 
-    if "secret" in instructions or "destructive" in instructions or "dangerous" in instructions:
-        p = 0.95 if matched_danger else 0.01
-    elif "fail" in instructions or "error" in instructions:
-        p = 0.88 if ("error" in state_lower or "failed" in state_lower or "panic" in state_lower) else 0.04
+    if any(k in instructions for k in ("secret", "destructive", "dangerous", "unauthorized")):
+        p = PROB_HIGH_RISK_MATCH if matched_danger else PROB_LOW_RISK_CLEAN
+    elif any(k in instructions for k in ("fail", "error", "broken")):
+        p = PROB_HIGH_ERROR_MATCH if matched_error else PROB_LOW_ERROR_CLEAN
     else:
         overlap = score_text_overlap(instructions, state_lower)
-        p = min(max(round(overlap, 3), 0.01), 0.99)
+        p = min(max(round(overlap, 3), PROB_DEFAULT_FLOOR), PROB_DEFAULT_CEILING)
 
     return {"noul": p}
 
 
 class SystemOneHandler(BaseHTTPRequestHandler):
-    def log_message(self, format, *args):
-        # Concise one-line request logger
+    def log_message(self, format: str, *args: Any) -> None:
         sys.stderr.write(f"[laya-engine] {self.command} {self.path} - {args[0]}\n")
 
-    def do_GET(self):
+    def do_GET(self) -> None:
         if self.path in ("/health", "/_health"):
             self.send_response(200)
             self.send_header("Content-Type", "application/json")
@@ -137,7 +168,7 @@ class SystemOneHandler(BaseHTTPRequestHandler):
                 "engine": "laya-421m" if LAYA_AVAILABLE else "laya-heuristic-fallback",
                 "open_weights": True,
                 "license": "Apache-2.0",
-                "laya_installed": LAYA_AVAILABLE
+                "laya_installed": LAYA_AVAILABLE,
             }
             self.wfile.write(json.dumps(resp, indent=2).encode("utf-8"))
         elif self.path in ("/v1/models", "/models"):
@@ -151,7 +182,7 @@ class SystemOneHandler(BaseHTTPRequestHandler):
                         "object": "model",
                         "owned_by": "convaiinnovations",
                         "type": "system-one",
-                        "primitives": ["choice", "score", "noul"]
+                        "primitives": ["choice", "score", "noul"],
                     }
                 ]
             }
@@ -160,7 +191,7 @@ class SystemOneHandler(BaseHTTPRequestHandler):
             self.send_response(404)
             self.end_headers()
 
-    def do_POST(self):
+    def do_POST(self) -> None:
         if self.path not in ("/v1/systemone", "/v1/decisions", "/systemone"):
             self.send_response(404)
             self.end_headers()
@@ -182,7 +213,7 @@ class SystemOneHandler(BaseHTTPRequestHandler):
         state_str = json.dumps(state) if isinstance(state, (dict, list)) else str(state)
         questions = payload.get("questions", {})
 
-        answers = {}
+        answers: Dict[str, Any] = {}
         for q_name, q_body in questions.items():
             q_type = q_body.get("type", "choice")
             if q_type == "choice":
@@ -199,8 +230,8 @@ class SystemOneHandler(BaseHTTPRequestHandler):
             "model": "laya-421m",
             "usage": {
                 "prompt_tokens": len(state_str.split()),
-                "output_tokens": 0  # System 1 is non-autoregressive: zero output tokens
-            }
+                "output_tokens": 0,  # System 1 is non-autoregressive: zero output tokens
+            },
         }
 
         self.send_response(200)
@@ -209,18 +240,33 @@ class SystemOneHandler(BaseHTTPRequestHandler):
         self.wfile.write(json.dumps(response_payload).encode("utf-8"))
 
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(description="Local FOSS System 1 Server (Laya / ModernBERT)")
-    parser.add_argument("--port", type=int, default=int(os.environ.get("PORT", 8000)), help="Port to bind (default 8000)")
-    parser.add_argument("--host", type=str, default="127.0.0.1", help="Host address (default 127.0.0.1)")
+    parser.add_argument(
+        "--port",
+        type=int,
+        default=int(os.environ.get("PORT", DEFAULT_PORT)),
+        help=f"Port to bind (default {DEFAULT_PORT})",
+    )
+    parser.add_argument(
+        "--host",
+        type=str,
+        default=DEFAULT_HOST,
+        help=f"Host address (default {DEFAULT_HOST})",
+    )
     args = parser.parse_args()
 
     server = HTTPServer((args.host, args.port), SystemOneHandler)
+    engine_desc = (
+        "Laya 421M ModernBERT (active)"
+        if LAYA_AVAILABLE
+        else "Laya Heuristic Bridge (install laya for 421M tensor weights)"
+    )
     print(f"🚀 [FOSS Engine] Local System 1 server active at http://{args.host}:{args.port}")
-    print(f"   Model: {'Laya 421M ModernBERT (active)' if LAYA_AVAILABLE else 'Laya Heuristic Bridge (install laya for 421M tensor weights)'}")
+    print(f"   Model: {engine_desc}")
     print(f"   Endpoint: http://{args.host}:{args.port}/v1/systemone")
-    print(f"   License: Apache 2.0 (100% Free and Open Source)")
-    print(f"   Zero cloud token pricing. Zero data exfiltration.")
+    print("   License: Apache 2.0 (100% Free and Open Source)")
+    print("   Zero cloud token pricing. Zero data exfiltration.")
     print("   Press Ctrl+C to stop.")
 
     try:

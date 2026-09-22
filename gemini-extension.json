@@ -1,6 +1,6 @@
 {
-  "name": "superpowers",
-  "description": "Core skills library: TDD, debugging, collaboration patterns, and proven techniques",
-  "version": "6.3.0",
+  "name": "jev-superpowers",
+  "version": "1.0.0",
+  "description": "Systematic agentic software development upgraded with TypeSafe Jev System One typed decisions and local open-weight Laya inference.",
   "contextFileName": "GEMINI.md"
 }

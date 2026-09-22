@@ -1,15 +1,18 @@
 {
-  "name": "superpowers",
-  "description": "Core skills library for Claude Code: TDD, debugging, collaboration patterns, and proven techniques",
-  "version": "6.3.0",
+  "name": "jev-superpowers",
+  "version": "1.0.0",
+  "description": "Systematic agentic software development for Claude Code upgraded with TypeSafe Jev System One typed decisions and local open-weight Laya inference.",
   "author": {
-    "name": "Jesse Vincent",
-    "email": "jesse@fsck.com"
+    "name": "Akash Priyadarshi",
+    "email": "272530059+AkashPriyadarshii@users.noreply.github.com"
   },
-  "homepage": "https://github.com/obra/superpowers",
-  "repository": "https://github.com/obra/superpowers",
+  "homepage": "https://jev-superpowers.vercel.app",
+  "repository": "https://github.com/AkashPriyadarshii/jev-superpowers",
   "license": "MIT",
   "keywords": [
+    "typesafe-ai",
+    "jev",
+    "laya",
     "skills",
     "tdd",
     "debugging",
