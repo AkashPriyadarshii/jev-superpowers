@@ -17,4 +17,11 @@ if [ -f "./scripts/test.sh" ]; then
     fi
 fi
 
+if command -v limpet >/dev/null 2>&1; then
+    if ! limpet check >/dev/null 2>&1; then
+        echo "jev-superpowers stop: limpet verification gate rejected turn completion." >&2
+        exit 2
+    fi
+fi
+
 exit 0

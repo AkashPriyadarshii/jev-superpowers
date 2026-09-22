@@ -63,8 +63,11 @@ export const SuperpowersPlugin = async ({ client, directory }) => {
     // Return cached result on subsequent calls
     if (_bootstrapCache !== undefined) return _bootstrapCache;
 
-    // Try to load using-superpowers skill
-    const skillPath = path.join(superpowersSkillsDir, 'using-superpowers', 'SKILL.md');
+    // Try to load jev-using-superpowers skill, fallback to using-superpowers
+    let skillPath = path.join(superpowersSkillsDir, 'jev-using-superpowers', 'SKILL.md');
+    if (!fs.existsSync(skillPath)) {
+      skillPath = path.join(superpowersSkillsDir, 'using-superpowers', 'SKILL.md');
+    }
     if (!fs.existsSync(skillPath)) {
       _bootstrapCache = null;
       return null;

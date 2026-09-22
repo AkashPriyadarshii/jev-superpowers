@@ -38,7 +38,8 @@ By **[Akash Priyadarshi](https://github.com/AkashPriyadarshii)**
 
 </div>
 
-[![stars](https://img.shields.io/github/stars/AkashPriyadarshii/jev-superpowers?style=flat-square&label=stars)](https://github.com/AkashPriyadarshii/jev-superpowers/stargazers) [![release](https://img.shields.io/github/v/release/AkashPriyadarshii/jev-superpowers?style=flat-square&label=release)](https://github.com/AkashPriyadarshii/jev-superpowers/releases)
+[![stars](https://img.shields.io/github/stars/AkashPriyadarshii/jev-superpowers?style=flat-square&label=stars)](https://github.com/AkashPriyadarshii/jev-superpowers/stargazers)
+
 
 ---
 
@@ -64,7 +65,7 @@ Design targets measured on the maintainer setup; reproduce with `scripts/test.sh
 | **Per-Decision Verification Cost** | ~$0.015 – $0.030 | **~$0.00001** ($0.042/Mtok) | **$0.00000** (100% Free / Self-hosted) |
 | **Data Privacy** | Cloud LLM prompt logging | Ephemeral cloud evaluation | **100% Air-Gapped Local (Zero egress)** |
 | **Pre-Commit Diff Screening** | Manual / none | **Sub-second automated gate** | **Sub-second automated gate** |
-| **Local Test Suite Run** | N/A | 22/22 passed offline | 22/22 passed offline |
+| **Local Test Suite Run** | N/A | 24/24 passed offline | 24/24 passed offline |
 
 ---
 
@@ -123,20 +124,28 @@ For detailed recipes and terminal execution traces of each gate, see the **[Full
 
 ## Quickstart
 
-### Option 1: Cloud Backend (TypeSafe AI)
-
+### Step 1: Clone Repository
 ```bash
-# 1. Install jev-superpowers
-curl -fsSL https://raw.githubusercontent.com/AkashPriyadarshii/jev-superpowers/master/install.sh | bash
-
-# 2. Export your free API key from https://console.typesafe.ai
-export TYPESAFE_API_KEY="your_api_key"
+git clone https://github.com/AkashPriyadarshii/jev-superpowers.git
+cd jev-superpowers
 ```
 
-### Option 2: 100% Local FOSS Backend (Laya / ModernBERT)
+### Step 2: Choose Decision Backend
+
+#### Option A: Cloud Backend (TypeSafe AI)
 
 ```bash
-# 1. Install Laya (or run lightweight bridge)
+# 1. Export your free API key from https://console.typesafe.ai
+export TYPESAFE_API_KEY="your_api_key"
+
+# 2. Run cross-platform installer
+bash install.sh
+```
+
+#### Option B: 100% Local FOSS Backend (Laya / ModernBERT)
+
+```bash
+# 1. Install Laya
 pip install laya
 
 # 2. Start the local System 1 bridge
@@ -146,7 +155,7 @@ python scripts/serve-laya.py --port 8000 &
 export TYPESAFE_BASE_URL="http://127.0.0.1:8000"
 export TYPESAFE_API_KEY="local-laya"
 
-# 4. Install jev-superpowers
+# 4. Run installer
 bash install.sh
 ```
 
@@ -165,7 +174,7 @@ options:
 
 ### Verification Output
 
-Run the offline test suite:
+Run the offline test suite (`bash scripts/test.sh` or `pwsh scripts/test.ps1`):
 ```text
 🧪 Running jev-superpowers offline verification suite...
   ✔ jev-using-superpowers: valid frontmatter
@@ -189,9 +198,11 @@ Run the offline test suite:
   ✔ jev-systematic-debugging documents failure modes
   ✔ jev-verification documents failure modes
   ✔ confidence policy exists
+  ✔ FOSS Laya docs exist
+  ✔ serve-laya syntax valid
   ✔ README avoids absolute claims
 
-Test results: 22 passed, 0 failed.
+Test results: 24 passed, 0 failed.
 ```
 
 ---

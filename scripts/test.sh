@@ -74,6 +74,8 @@ for skill in "${JEV_SKILLS[@]}"; do
     check "$skill documents failure modes" grep -q "## Failure Modes" "${SKILLS_DIR}/${skill}/SKILL.md"
 done
 check "confidence policy exists" test -f "${ROOT_DIR}/docs/CONFIDENCE.md"
+check "FOSS Laya docs exist" test -f "${ROOT_DIR}/docs/FOSS_LAYA.md"
+check "serve-laya syntax valid" python -m py_compile "${ROOT_DIR}/scripts/serve-laya.py"
 
 # No banned absolute claims without methodology
 check "README avoids 0.0% absolute" bash -c "! grep -q '0\.0%' ${ROOT_DIR}/README.md"
