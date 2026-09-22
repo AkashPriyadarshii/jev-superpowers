@@ -46,12 +46,22 @@ check_tool "supercov" "npm install -g supercov"
 check_tool "limpet" "git clone https://github.com/noplan-inc/limpet ~/limpet (or /plugin install limpet@limpet)" "[ -f \"$HOME/limpet/limpet.py\" ] || command -v limpet || (command -v claude >/dev/null 2>&1 && claude plugin list 2>/dev/null | grep -q limpet)"
 check_tool "jev-seo" "cargo install jev-seo"
 
-if [ -z "${TYPESAFE_API_KEY:-}" ]; then
+has_local=0
+if [ -n "${TYPESAFE_BASE_URL:-}" ] || [ "${TYPESAFE_BACKEND:-}" = "laya" ]; then
+    has_local=1
+fi
+
+if [ -z "${TYPESAFE_API_KEY:-}" ] && [ "$has_local" -eq 0 ]; then
     echo ""
-    echo "✘ TYPESAFE_API_KEY environment variable is not set."
-    echo "  Get your free API key at: https://console.typesafe.ai"
-    echo "  Export it with: export TYPESAFE_API_KEY=\"your_key\""
-    MISSING=$((MISSING + 1))
+    echo "❌ Neither TYPESAFE_API_KEY nor local FOSS backend is configured."
+    echo "  Cloud: Get your free API key at: https://console.typesafe.ai"
+    echo "  Local FOSS: Run Laya via 'python scripts/serve-laya.py' and export:"
+    echo "    export TYPESAFE_BASE_URL=\"http://127.0.0.1:8000\""
+    echo "    export TYPESAFE_API_KEY=\"local-laya\""
+    exit 1
+elif [ "$has_local" -eq 1 ]; then
+    echo "✔ Local FOSS System 1 backend configured (${TYPESAFE_BASE_URL:-http://127.0.0.1:8000} / Laya)."
+    export TYPESAFE_API_KEY="${TYPESAFE_API_KEY:-local-laya}"
 else
     echo "✔ TYPESAFE_API_KEY is configured."
 fi

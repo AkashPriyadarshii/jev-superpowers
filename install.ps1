@@ -57,13 +57,21 @@ if ($limpetInstalled) {
 }
 Check-Tool "jev-seo" "cargo install jev-seo"
 
-if (!$env:TYPESAFE_API_KEY) {
-    Write-Host "`n✘ TYPESAFE_API_KEY environment variable is not set." -ForegroundColor Red
-    Write-Host "  Get your free API key at: https://console.typesafe.ai"
-    Write-Host "  Set it in PowerShell with: `$env:TYPESAFE_API_KEY = 'your_key'"
+$hasLocal = [bool]($env:TYPESAFE_BASE_URL -or ($env:TYPESAFE_BACKEND -eq "laya"))
+if (!$env:TYPESAFE_API_KEY -and !$hasLocal) {
+    Write-Host "`n❌ Neither TYPESAFE_API_KEY nor local FOSS backend is configured." -ForegroundColor Red
+    Write-Host "  Cloud: Get your free API key at https://console.typesafe.ai"
+    Write-Host "  Local FOSS: Run Laya via 'python scripts/serve-laya.py' and set:"
+    Write-Host "    `$env:TYPESAFE_BASE_URL = 'http://127.0.0.1:8000'"
+    Write-Host "    `$env:TYPESAFE_API_KEY = 'local-laya'"
     $missing++
+} elseif ($hasLocal) {
+    Write-Host "`n✔ Local FOSS System 1 backend configured ($($env:TYPESAFE_BASE_URL) / Laya)." -ForegroundColor Green
+    if (!$env:TYPESAFE_API_KEY) {
+        $env:TYPESAFE_API_KEY = "local-laya"
+    }
 } else {
-    Write-Host "✔ TYPESAFE_API_KEY is configured." -ForegroundColor Green
+    Write-Host "`n✔ TYPESAFE_API_KEY is configured." -ForegroundColor Green
 }
 
 if ($missing -gt 0) {
