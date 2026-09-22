@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>System One Primitives : jev-superpowers</title>
+  <meta name="description" content="Technical specification of TypeSafe AI System One decision primitives: Choice, Score, and Noul powering sub-second agent reflex gates.">
+  <link rel="canonical" href="https://jev-superpowers.vercel.app/system-one.html">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jev-superpowers.vercel.app/system-one.html">
+  <meta property="og:title" content="System One Primitives : jev-superpowers">
+  <meta property="og:description" content="Technical specification of TypeSafe AI System One decision primitives: Choice, Score, and Noul powering sub-second agent reflex gates.">
+  <meta property="og:site_name" content="jev-superpowers">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="System One Primitives : jev-superpowers">
+  <meta name="twitter:description" content="Technical specification of TypeSafe AI System One decision primitives.">
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "System One Primitives : jev-superpowers",
+    "url": "https://jev-superpowers.vercel.app/system-one.html",
+    "description": "Technical specification of TypeSafe AI System One decision primitives: Choice, Score, and Noul powering sub-second agent reflex gates.",
+    "author": {
+      "@type": "Person",
+      "name": "Akash Priyadarshi"
+    }
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <a href="index.html" class="logo">jev-superpowers<sup>hooks</sup></a>
+    <nav class="site-nav" aria-label="Main Navigation">
+      <a href="workflows.html">Skills &amp; Workflows</a>
+      <a href="system-one.html" style="color:var(--pink);">System One</a>
+      <a href="matrix.html">Agent Matrix</a>
+      <a href="hooks.html">Hooks Spec</a>
+      <a href="telemetry.html">Telemetry</a>
+      <a href="lexicon.html">Lexicon</a>
+    </nav>
+    <a href="https://github.com/AkashPriyadarshii/jev-superpowers" class="btn btn-primary" rel="noopener">GitHub &star;</a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile Navigation">
+    <div class="mobile-nav-inner">
+      <a href="workflows.html">Skills &amp; Workflows</a>
+      <a href="system-one.html">System One</a>
+      <a href="matrix.html">Agent Matrix</a>
+      <a href="hooks.html">Hooks Spec</a>
+      <a href="telemetry.html">Telemetry</a>
+      <a href="lexicon.html">Lexicon</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="https://github.com/AkashPriyadarshii/jev-superpowers" class="btn btn-primary">GitHub &star;</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero" style="border-bottom: 1px solid var(--grey-2); padding-bottom: 40px;">
+      <div class="container">
+        <p class="eyebrow">Decision Primitives</p>
+        <h1 style="font-size: clamp(34px, 5vw, 56px);">TypeSafe Jev System One</h1>
+        <p class="lead">
+          Generative text models fail at sub-second reflex evaluation. Typed semantic judgments provide deterministic gates for agent runtimes.
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION: PRIMITIVES SPECIFICATION TABLE -->
+    <section style="border-bottom: 1px solid var(--grey-2);">
+      <div class="container">
+        <h2>System One Decision Matrix</h2>
+        <p class="lead">
+          System One does not generate streamable prose, code blocks, or conversational filler. It ingests structured state and returns typed machine primitives.
+        </p>
+
+        <div style="overflow-x:auto; margin: 28px 0;">
+          <table class="flag-table">
+            <thead>
+              <tr>
+                <th>Primitive</th>
+                <th>Type Output</th>
+                <th>Evaluation Contract</th>
+                <th>Sub-Second Latency</th>
+                <th>Agent Application</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>Choice</code></td>
+                <td>String ID + confidence (0.0..1.0)</td>
+                <td>Selects exactly one option from a bounded list</td>
+                <td>70 to 85ms</td>
+                <td>Workflow routing, architectural branch selection</td>
+              </tr>
+              <tr>
+                <td><code>Score</code></td>
+                <td>Float (0.0..10.0) + confidence (0.0..1.0)</td>
+                <td>Evaluates state against multi-variable criteria</td>
+                <td>80 to 95ms</td>
+                <td>Dependency vetting, code quality smell scoring</td>
+              </tr>
+              <tr>
+                <td><code>Noul</code></td>
+                <td>Probability (0.0..1.0)</td>
+                <td>Calibrated probability for a binary assertion</td>
+                <td>65 to 80ms</td>
+                <td>Stop-hook gate, malicious shell command detection</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: CONFIDENCE CONTRACT -->
+    <section style="border-bottom: 1px solid var(--grey-2); background: var(--grey-4);">
+      <div class="container">
+        <p class="eyebrow">Safety Calibration</p>
+        <h2>The Confidence Threshold Policy</h2>
+        <p class="lead">
+          Text models hallucinate with high conviction. TypeSafe System One returns calibrated confidence scores.
+        </p>
+        <p>
+          In <code>jev-superpowers</code>, any destructive action, package deletion, git force-push, or branch cleanup requires a minimum confidence of 0.80:
+        </p>
+        <div class="code-block" style="max-width: 680px; margin: 16px 0;">
+          <pre><code>// Rust enforcement in hooks/pre-tool
+if action.is_destructive() {
+    if judgment.confidence &lt; 0.80 {
+        eprintln!("[BLOCKED] Destructive command rejected: confidence {} &lt; 0.80", judgment.confidence);
+        std::process::exit(1);
+    }
+}</code></pre>
+          <button class="copy-btn" data-copy="if judgment.confidence &lt; 0.80 { std::process::exit(1); }">copy</button>
+        </div>
+        <p style="font-size:15px; color:var(--grey-1); line-height:1.6;">
+          If the oracle returns a confidence of 0.76, the action is blocked by the hook, requiring the human developer to approve the command manually.
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION: SPECULATIVE FAN-OUT -->
+    <section style="border-bottom: 1px solid var(--grey-2);">
+      <div class="container">
+        <p class="eyebrow">Performance Architecture</p>
+        <h2>Speculative Fan-out vs Sequential Prompts</h2>
+        <p class="lead">
+          Sequential prompt-chains in coding agents force round-trip network delays of 2 to 5 seconds per question.
+        </p>
+        <p>
+          System One ingests repository state once and batches independent questions in a single request:
+        </p>
+        <div class="code-block">
+          <pre><code>POST https://api.typesafe.ai/v1/systemone
+{
+  "state": "Git staged diff (240 lines) + test failure output",
+  "questions": [
+    { "id": "q1", "type": "choice", "options": ["safe", "risky"] },
+    { "id": "q2", "type": "score", "criteria": "Code cleanliness" },
+    { "id": "q3", "type": "noul", "assertion": "Tests cover new edge case" }
+  ]
+}
+
+// Result: 92ms total for all evaluations &middot; $0.0003 cost</code></pre>
+          <button class="copy-btn" data-copy="POST https://api.typesafe.ai/v1/systemone">copy</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- AUTHOR SLAB -->
+    <section>
+      <div class="container">
+        <div class="author-slab">
+          <div>
+            <span class="author-tag">FRAMEWORK ARCHITECT</span>
+            <h3 class="author-name">Akash Priyadarshi</h3>
+            <p class="author-location">Patna, Bihar, India</p>
+            <p class="author-bio">
+              Software engineer specializing in AI agent security, sub-second decision oracles, and deterministic developer tooling. Creator of jev-superpowers, jev-seo, jev-curate, and tdlib-android.
+            </p>
+          </div>
+          <div class="author-links">
+            <a href="https://github.com/AkashPriyadarshii" class="author-link" rel="noopener">GitHub</a>
+            <a href="https://akashpriyadarshi.vercel.app" class="author-link" rel="noopener">Portfolio</a>
+            <a href="https://linkedin.com/in/akash-priyadarshi-1aa51b37a" class="author-link" rel="noopener">LinkedIn</a>
+            <a href="https://akashpriyadarshii.github.io/Resume/" class="author-link" rel="noopener">Resume</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="workflows.html">Skills &amp; Workflows</a></li>
+          <li><a href="system-one.html">System One</a></li>
+          <li><a href="matrix.html">Agent Matrix</a></li>
+          <li><a href="hooks.html">Hooks Spec</a></li>
+          <li><a href="telemetry.html">Telemetry</a></li>
+          <li><a href="lexicon.html">Lexicon</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Ecosystem</h4>
+        <ul>
+          <li><a href="https://github.com/AkashPriyadarshii/jev-seo" rel="noopener">jev-seo</a></li>
+          <li><a href="https://github.com/AkashPriyadarshii/jev-superpowers" rel="noopener">jev-superpowers</a></li>
+          <li><a href="https://github.com/AkashPriyadarshii/jev-curate" rel="noopener">jev-curate</a></li>
+          <li><a href="https://github.com/AkashPriyadarshii/jev-git" rel="noopener">jev-git</a></li>
+          <li><a href="https://github.com/AkashPriyadarshii/tdlib-android" rel="noopener">tdlib-android</a></li>
+          <li><a href="https://github.com/AkashPriyadarshii/kharcha" rel="noopener">kharcha</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Author</h4>
+        <ul>
+          <li>Akash Priyadarshi</li>
+          <li>Patna, Bihar, India</li>
+          <li><a href="https://github.com/AkashPriyadarshii" rel="noopener">GitHub Profile</a></li>
+          <li><a href="https://akashpriyadarshi.vercel.app" rel="noopener">Personal Portfolio</a></li>
+          <li><a href="https://linkedin.com/in/akash-priyadarshi-1aa51b37a" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://akashpriyadarshii.github.io/Resume/" rel="noopener">Resume</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Social</h4>
+        <ul>
+          <li><a href="https://x.com/Akash__ydv001" rel="noopener">X / Twitter (@Akash__ydv001)</a></li>
+          <li><a href="https://www.threads.net/@akash.priyadarshii" rel="noopener">Threads (@akash.priyadarshii)</a></li>
+          <li><a href="https://www.instagram.com/akash.priyadarshii/" rel="noopener">Instagram (@akash.priyadarshii)</a></li>
+          <li><a href="https://reddit.com/user/DragonfruitWeak2801" rel="noopener">Reddit (u/DragonfruitWeak2801)</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Akash Priyadarshi. Distributed under MIT License. Zero tracking, zero telemetry.
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

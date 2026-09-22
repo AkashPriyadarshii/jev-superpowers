@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lifecycle Hooks Specification : jev-superpowers</title>
+  <meta name="description" content="Technical specification of PreToolUse, Pre-Commit, and Stop lifecycle hooks across Claude Code, Cursor, OpenCode, and Pi.">
+  <link rel="canonical" href="https://jev-superpowers.vercel.app/hooks.html">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jev-superpowers.vercel.app/hooks.html">
+  <meta property="og:title" content="Lifecycle Hooks Specification : jev-superpowers">
+  <meta property="og:description" content="Technical specification of PreToolUse, Pre-Commit, and Stop lifecycle hooks across Claude Code, Cursor, OpenCode, and Pi.">
+  <meta property="og:site_name" content="jev-superpowers">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Lifecycle Hooks Specification : jev-superpowers">
+  <meta name="twitter:description" content="Technical specification of PreToolUse, Pre-Commit, and Stop lifecycle hooks.">
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Lifecycle Hooks Specification : jev-superpowers",
+    "url": "https://jev-superpowers.vercel.app/hooks.html",
+    "description": "Technical specification of PreToolUse, Pre-Commit, and Stop lifecycle hooks across Claude Code, Cursor, OpenCode, and Pi.",
+    "author": {
+      "@type": "Person",
+      "name": "Akash Priyadarshi"
+    }
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <a href="index.html" class="logo">jev-superpowers<sup>hooks</sup></a>
+    <nav class="site-nav" aria-label="Main Navigation">
+      <a href="workflows.html">Skills &amp; Workflows</a>
+      <a href="system-one.html">System One</a>
+      <a href="matrix.html">Agent Matrix</a>
+      <a href="hooks.html" style="color:var(--pink);">Hooks Spec</a>
+      <a href="telemetry.html">Telemetry</a>
+      <a href="lexicon.html">Lexicon</a>
+    </nav>
+    <a href="https://github.com/AkashPriyadarshii/jev-superpowers" class="btn btn-primary" rel="noopener">GitHub &star;</a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile Navigation">
+    <div class="mobile-nav-inner">
+      <a href="workflows.html">Skills &amp; Workflows</a>
+      <a href="system-one.html">System One</a>
+      <a href="matrix.html">Agent Matrix</a>
+      <a href="hooks.html">Hooks Spec</a>
+      <a href="telemetry.html">Telemetry</a>
+      <a href="lexicon.html">Lexicon</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="https://github.com/AkashPriyadarshii/jev-superpowers" class="btn btn-primary">GitHub &star;</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero" style="border-bottom: 1px solid var(--grey-2); padding-bottom: 40px;">
+      <div class="container">
+        <p class="eyebrow">Runtime Architecture</p>
+        <h1 style="font-size: clamp(34px, 5vw, 56px);">Lifecycle Hooks Specification</h1>
+        <p class="lead">
+          How jev-superpowers binds process-level interceptors to agent execution loops to enforce deterministic boundaries before code is run or committed.
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION: THE HOOK LIFECYCLE -->
+    <section style="border-bottom: 1px solid var(--grey-2);">
+      <div class="container">
+        <h2>The 3 Enforcement Gates</h2>
+        <p class="lead">
+          Unlike text-based guardrails that rely on prompt compliance, lifecycle hooks execute in the operating system shell prior to tool invocation.
+        </p>
+
+        <div style="margin: 28px 0;">
+          <div style="border-bottom: 1px solid var(--grey-2); padding: 20px 0;">
+            <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:8px;">
+              <strong style="font-family: var(--display); font-size: 22px; color: var(--ink);">Gate 1: PreToolUse (Command &amp; Dependency Interceptor)</strong>
+              <span class="tag">Pre-Execution</span>
+            </div>
+            <p style="font-size: 15px; color: var(--grey-1); line-height: 1.6;">
+              Fires before the agent harness executes bash, read, write, or edit tool calls. If the command attempts to add a crate or npm package, <code>jev-scout</code> evaluates the package name against live registry registries. If the command attempts a destructive delete, <code>jev-guard</code> blocks it unless confidence &gt;= 0.80.
+            </p>
+            <div class="code-block" style="margin-top:12px;">
+              <pre><code>// Claude Code hooks.json configuration
+{
+  "PreToolUse": [
+    {
+      "matcher": "tool_name == 'Bash'",
+      "command": "bash ~/.agents/jev-superpowers/hooks/pre-tool"
+    }
+  ]
+}</code></pre>
+            </div>
+          </div>
+
+          <div style="border-bottom: 1px solid var(--grey-2); padding: 20px 0;">
+            <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:8px;">
+              <strong style="font-family: var(--display); font-size: 22px; color: var(--ink);">Gate 2: Pre-Commit (Diff &amp; Quality Reflex)</strong>
+              <span class="tag">Pre-Commit</span>
+            </div>
+            <p style="font-size: 15px; color: var(--grey-1); line-height: 1.6;">
+              Standard git pre-commit hook wired to <code>git-jev</code>. Evaluates the staged patch for architectural integrity, broken imports, and secret exfiltration before committing to git history.
+            </p>
+            <div class="code-block" style="margin-top:12px;">
+              <pre><code>#!/usr/bin/env bash
+# .git/hooks/pre-commit
+git-jev check || {
+  echo "[BLOCKED] git-jev semantic gate rejected staged changes"
+  exit 1
+}</code></pre>
+            </div>
+          </div>
+
+          <div style="padding: 20px 0;">
+            <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:8px;">
+              <strong style="font-family: var(--display); font-size: 22px; color: var(--ink);">Gate 3: Stop Hook (Limpet Completion Policy)</strong>
+              <span class="tag">Turn Completion</span>
+            </div>
+            <p style="font-size: 15px; color: var(--grey-1); line-height: 1.6;">
+              Intercepts the agent's turn completion or exit signal. <code>limpet</code> runs test assertions and compiler diagnostics. If any verification check fails, exit code 1 is returned with failure logs, forcing the agent to stay in context and resolve the issues.
+            </p>
+            <div class="code-block" style="margin-top:12px;">
+              <pre><code>{
+  "Stop": [
+    {
+      "command": "bash ~/.agents/jev-superpowers/hooks/stop"
+    }
+  ]
+}</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: PLATFORM CONFIGURATIONS -->
+    <section style="border-bottom: 1px solid var(--grey-2); background: var(--grey-4);">
+      <div class="container">
+        <p class="eyebrow">Integration Matrix</p>
+        <h2>Multi-Harness Hook Configurations</h2>
+        <p class="lead">
+          jev-superpowers ships drop-in manifests for all major autonomous coding agent runtimes.
+        </p>
+
+        <div style="overflow-x:auto; margin: 24px 0;">
+          <table class="flag-table">
+            <thead>
+              <tr>
+                <th>Agent Platform</th>
+                <th>Manifest Location</th>
+                <th>Active Hooks</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Claude Code</strong></td>
+                <td><code>.claude-plugin/plugin.json</code></td>
+                <td>SessionStart, PreToolUse, Stop</td>
+              </tr>
+              <tr>
+                <td><strong>Cursor</strong></td>
+                <td><code>.cursor-plugin/hooks-cursor.json</code></td>
+                <td>PreToolUse, PostToolUse, Stop</td>
+              </tr>
+              <tr>
+                <td><strong>OpenCode</strong></td>
+                <td><code>.opencode/plugins/superpowers.js</code></td>
+                <td>onToolCall, onTurnEnd</td>
+              </tr>
+              <tr>
+                <td><strong>Pi Agent</strong></td>
+                <td><code>.pi/extensions/superpowers.ts</code></td>
+                <td>tool_call_gate, turn_complete</td>
+              </tr>
+              <tr>
+                <td><strong>Codex &amp; Hermes</strong></td>
+                <td><code>.codex-plugin/plugin.json</code></td>
+                <td>pre-command, stop-policy</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- AUTHOR SLAB -->
+    <section>
+      <div class="container">
+        <div class="author-slab">
+          <div>
+            <span class="author-tag">FRAMEWORK ARCHITECT</span>
+            <h3 class="author-name">Akash Priyadarshi</h3>
+            <p class="author-location">Patna, Bihar, India</p>
+            <p class="author-bio">
+              Software engineer specializing in AI agent security, sub-second decision oracles, and deterministic developer tooling. Creator of jev-superpowers, jev-seo, jev-curate, and tdlib-android.
+            </p>
+          </div>
+          <div class="author-links">
+            <a href="https://github.com/AkashPriyadarshii" class="author-link" rel="noopener">GitHub</a>
+            <a href="https://akashpriyadarshi.vercel.app" class="author-link" rel="noopener">Portfolio</a>
+            <a href="https://linkedin.com/in/akash-priyadarshi-1aa51b37a" class="author-link" rel="noopener">LinkedIn</a>
+            <a href="https://akashpriyadarshii.github.io/Resume/" class="author-link" rel="noopener">Resume</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="workflows.html">Skills &amp; Workflows</a></li>
+          <li><a href="system-one.html">System One</a></li>
+          <li><a href="matrix.html">Agent Matrix</a></li>
+          <li><a href="hooks.html">Hooks Spec</a></li>
+          <li><a href="telemetry.html">Telemetry</a></li>
+          <li><a href="lexicon.html">Lexicon</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Ecosystem</h4>
+        <ul>
+          <li><a href="https://github.com/AkashPriyadarshii/jev-seo" rel="noopener">jev-seo</a></li>
+          <li><a href="https://github.com/AkashPriyadarshii/jev-superpowers" rel="noopener">jev-superpowers</a></li>
+          <li><a href="https://github.com/AkashPriyadarshii/jev-curate" rel="noopener">jev-curate</a></li>
+          <li><a href="https://github.com/AkashPriyadarshii/jev-git" rel="noopener">jev-git</a></li>
+          <li><a href="https://github.com/AkashPriyadarshii/tdlib-android" rel="noopener">tdlib-android</a></li>
+          <li><a href="https://github.com/AkashPriyadarshii/kharcha" rel="noopener">kharcha</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Author</h4>
+        <ul>
+          <li>Akash Priyadarshi</li>
+          <li>Patna, Bihar, India</li>
+          <li><a href="https://github.com/AkashPriyadarshii" rel="noopener">GitHub Profile</a></li>
+          <li><a href="https://akashpriyadarshi.vercel.app" rel="noopener">Personal Portfolio</a></li>
+          <li><a href="https://linkedin.com/in/akash-priyadarshi-1aa51b37a" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://akashpriyadarshii.github.io/Resume/" rel="noopener">Resume</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Social</h4>
+        <ul>
+          <li><a href="https://x.com/Akash__ydv001" rel="noopener">X / Twitter (@Akash__ydv001)</a></li>
+          <li><a href="https://www.threads.net/@akash.priyadarshii" rel="noopener">Threads (@akash.priyadarshii)</a></li>
+          <li><a href="https://www.instagram.com/akash.priyadarshii/" rel="noopener">Instagram (@akash.priyadarshii)</a></li>
+          <li><a href="https://reddit.com/user/DragonfruitWeak2801" rel="noopener">Reddit (u/DragonfruitWeak2801)</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Akash Priyadarshi. Distributed under MIT License. Zero tracking, zero telemetry.
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

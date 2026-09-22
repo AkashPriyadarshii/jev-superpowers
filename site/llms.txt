@@ -1,0 +1,46 @@
+# jev-superpowers: Systematic Software Engineering with Jev System One Reflex Gates
+
+> Drop-in agentic skills framework upgrading software engineering workflows with TypeSafe AI Jev System One typed decisions, sub-second gates, and lifecycle hooks.
+
+## Site Structure & Page Manifest
+- Main Hub: https://jev-superpowers.vercel.app/
+- Skills & Workflows: https://jev-superpowers.vercel.app/workflows.html
+- System One Primitives: https://jev-superpowers.vercel.app/system-one.html
+- Agent Capability Matrix: https://jev-superpowers.vercel.app/matrix.html
+- Lifecycle Hooks Spec: https://jev-superpowers.vercel.app/hooks.html
+- Telemetry & Benchmarks: https://jev-superpowers.vercel.app/telemetry.html
+- Agent Engineering Lexicon: https://jev-superpowers.vercel.app/lexicon.html
+- About & Mission: https://jev-superpowers.vercel.app/about.html
+- Contact & Issues: https://jev-superpowers.vercel.app/contact.html
+- Privacy & Data Isolation: https://jev-superpowers.vercel.app/privacy.html
+
+## Framework Overview
+jev-superpowers wraps upstream software engineering methodologies (obra/superpowers) with TypeSafe AI Jev System One typed decisions:
+- Choice: Discrete selection with confidence (routing, branch selection)
+- Score: Continuous multi-variable score with confidence (dependency vetting, smell scoring)
+- Noul: Calibrated probability (limpet stop-hook, command safety)
+
+## Supported Agent Platforms
+- Claude Code (.claude-plugin/plugin.json, marketplace.json)
+- Cursor (.cursor-plugin/plugin.json, hooks-cursor.json)
+- Codex (.codex-plugin/plugin.json)
+- OpenCode (.opencode/plugins/superpowers.js)
+- Devin (.devin-plugin/plugin.json)
+- Hermes (.hermes-plugin/plugin.yaml)
+- Gemini CLI (gemini-extension.json)
+- Pi Agent (.pi/extensions/superpowers.ts)
+
+## Author
+Akash Priyadarshi (Patna, Bihar, India)
+GitHub: https://github.com/AkashPriyadarshii
+Portfolio: https://akashpriyadarshi.vercel.app
+LinkedIn: https://linkedin.com/in/akash-priyadarshi-1aa51b37a
+Resume: https://akashpriyadarshii.github.io/Resume/
+
+## Ecosystem
+- jev-seo: https://github.com/AkashPriyadarshii/jev-seo
+- jev-superpowers: https://github.com/AkashPriyadarshii/jev-superpowers
+- jev-curate: https://github.com/AkashPriyadarshii/jev-curate
+- jev-git: https://github.com/AkashPriyadarshii/jev-git
+- tdlib-android: https://github.com/AkashPriyadarshii/tdlib-android
+- kharcha: https://github.com/AkashPriyadarshii/kharcha

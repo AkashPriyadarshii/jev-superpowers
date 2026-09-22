@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About jev-superpowers : Origin and Philosophy</title>
+  <meta name="description" content="The origin story, engineering philosophy, and mission behind jev-superpowers and the TypeSafe Jev developer ecosystem.">
+  <meta name="keywords" content="about jev-superpowers, akash priyadarshi, typesafe ai ecosystem, agent safety philosophy, coding agent reliability">
+  <link rel="canonical" href="https://jev-superpowers.vercel.app/about.html">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jev-superpowers.vercel.app/about.html">
+  <meta property="og:title" content="About jev-superpowers : Origin and Philosophy">
+  <meta property="og:description" content="Why deterministic System One reflex gates are essential for autonomous coding agents.">
+  <meta property="og:site_name" content="jev-superpowers">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="About jev-superpowers : Origin and Philosophy">
+  <meta name="twitter:description" content="Why deterministic System One reflex gates are essential for autonomous coding agents.">
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About jev-superpowers",
+    "url": "https://jev-superpowers.vercel.app/about.html",
+    "description": "The origin story, engineering philosophy, and mission behind jev-superpowers.",
+    "author": {
+      "@type": "Person",
+      "name": "Akash Priyadarshi",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Patna",
+        "addressRegion": "Bihar",
+        "addressCountry": "IN"
+      }
+    }
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <a href="index.html" class="logo">jev-superpowers<sup>hooks</sup></a>
+    <nav class="site-nav" aria-label="Main Navigation">
+      <a href="workflows.html">Skills &amp; Workflows</a>
+      <a href="system-one.html">System One</a>
+      <a href="matrix.html">Agent Matrix</a>
+      <a href="hooks.html">Hooks Spec</a>
+      <a href="telemetry.html">Telemetry</a>
+      <a href="lexicon.html">Lexicon</a>
+    </nav>
+    <a href="https://github.com/AkashPriyadarshii/jev-superpowers" class="btn btn-primary" rel="noopener">GitHub &star;</a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile Navigation">
+    <div class="mobile-nav-inner">
+      <a href="workflows.html">Skills &amp; Workflows</a>
+      <a href="system-one.html">System One</a>
+      <a href="matrix.html">Agent Matrix</a>
+      <a href="hooks.html">Hooks Spec</a>
+      <a href="telemetry.html">Telemetry</a>
+      <a href="lexicon.html">Lexicon</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="https://github.com/AkashPriyadarshii/jev-superpowers" class="btn btn-primary">GitHub &star;</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero" style="border-bottom: 1px solid var(--grey-2); padding-bottom: 40px;">
+      <div class="container">
+        <p class="eyebrow">Origin &amp; Mission</p>
+        <h1 style="font-size: clamp(34px, 5vw, 56px);">Engineering Rigor for Autonomous Agents</h1>
+        <p class="lead">
+          AI coding agents promise automated software delivery. In real repositories, unconstrained models hallucinate non-existent packages, wipe working trees, and declare tickets complete while compilation fails. jev-superpowers turns loose agent prompts into enforceable software engineering contracts.
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION: ORIGIN STORY -->
+    <section style="border-bottom: 1px solid var(--grey-2);">
+      <div class="container">
+        <h2>The Origin Story</h2>
+        <p class="lead">
+          During early testing with autonomous development loops on large production codebases, two failure modes repeated consistently:
+        </p>
+        <div style="margin: 24px 0; line-height: 1.7;">
+          <p>
+            First, agents authoring plans would invent package names that did not exist on crates.io or npm. The agent would construct elaborate architectures around phantom libraries, write hundreds of lines of glue code, and only discover the package was fictional when the build runner crashed 20 minutes later.
+          </p>
+          <p style="margin-top: 14px;">
+            Second, when long terminal outputs filled the context buffer, the agent would suffer from context rot. Faced with failing integration tests, the model would summarize the failure as a minor warning, declare the feature complete, and attempt to terminate its turn.
+          </p>
+          <p style="margin-top: 14px;">
+            The upstream <code>obra/superpowers</code> framework established discipline through structured prompt instructions. But natural language prompt rules degrade as conversational history grows. To build truly reliable agents, we needed physical boundaries executed in the shell before tools run. That led to <code>jev-superpowers</code>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: ARCHITECTURAL PHILOSOPHY -->
+    <section style="border-bottom: 1px solid var(--grey-2);">
+      <div class="container">
+        <h2>The Core Architectural Invariants</h2>
+        <p class="lead">
+          Three non-negotiable principles govern every skill and hook in this framework:
+        </p>
+
+        <div style="margin: 28px 0;">
+          <div style="border-bottom: 1px solid var(--grey-2); padding: 18px 0;">
+            <strong style="font-family: var(--display); font-size: 20px; color: var(--ink);">1. Lifecycle Hooks Over Soft Prompts</strong>
+            <p style="font-size: 15px; color: var(--grey-1); margin-top: 6px; line-height: 1.6;">
+              A prompt is advisory text that an attention layer can overlook. A hook is a physical operating system gate. When an agent attempts a git commit, <code>git-jev</code> runs outside the context window and returns a deterministic exit code. If the code violates invariants, execution stops immediately.
+            </p>
+          </div>
+
+          <div style="border-bottom: 1px solid var(--grey-2); padding: 18px 0;">
+            <strong style="font-family: var(--display); font-size: 20px; color: var(--ink);">2. Zero Hallucinated Dependencies</strong>
+            <p style="font-size: 15px; color: var(--grey-1); margin-top: 6px; line-height: 1.6;">
+              An agent must never guess a library name. Every cargo crate or npm package must pass through <code>jev-scout</code>. The oracle checks real registry metadata, download volume, and maintenance activity in 80 milliseconds. Fictional packages receive a zero score and never touch disk.
+            </p>
+          </div>
+
+          <div style="padding: 18px 0;">
+            <strong style="font-family: var(--display); font-size: 20px; color: var(--ink);">3. Empirical Proof Before Turn Completion</strong>
+            <p style="font-size: 15px; color: var(--grey-1); margin-top: 6px; line-height: 1.6;">
+              An agent cannot declare completion by generating conversational prose. A turn concludes only when test suites pass, compiler warnings clear, and <code>limpet</code> validates that test assertions cover every modified branch.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: AUTHOR SLAB -->
+    <section>
+      <div class="container">
+        <div class="author-slab">
+          <div>
+            <span class="author-tag">FRAMEWORK ARCHITECT</span>
+            <h3 class="author-name">Akash Priyadarshi</h3>
+            <p class="author-location">Patna, Bihar, India</p>
+            <p class="author-bio">
+              Software engineer focusing on autonomous AI agent reliability, sub-second decision oracles, and deterministic developer tooling. Creator of jev-superpowers, jev-seo, jev-curate, and tdlib-android.
+            </p>
+          </div>
+          <div class="author-links">
+            <a href="https://github.com/AkashPriyadarshii" class="author-link" rel="noopener">GitHub</a>
+            <a href="https://akashpriyadarshi.vercel.app" class="author-link" rel="noopener">Portfolio</a>
+            <a href="https://linkedin.com/in/akash-priyadarshi-1aa51b37a" class="author-link" rel="noopener">LinkedIn</a>
+            <a href="https://akashpriyadarshii.github.io/Resume/" class="author-link" rel="noopener">Resume</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="workflows.html">Skills &amp; Workflows</a></li>
+          <li><a href="system-one.html">System One</a></li>
+          <li><a href="matrix.html">Agent Matrix</a></li>
+          <li><a href="hooks.html">Hooks Spec</a></li>
+          <li><a href="telemetry.html">Telemetry</a></li>
+          <li><a href="lexicon.html">Lexicon</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Ecosystem</h4>
+        <ul>
+          <li><a href="https://github.com/AkashPriyadarshii/jev-seo" rel="noopener">jev-seo</a></li>
+          <li><a href="https://github.com/AkashPriyadarshii/jev-superpowers" rel="noopener">jev-superpowers</a></li>
+          <li><a href="https://github.com/AkashPriyadarshii/jev-curate" rel="noopener">jev-curate</a></li>
+          <li><a href="https://github.com/AkashPriyadarshii/jev-git" rel="noopener">jev-git</a></li>
+          <li><a href="https://github.com/AkashPriyadarshii/tdlib-android" rel="noopener">tdlib-android</a></li>
+          <li><a href="https://github.com/AkashPriyadarshii/kharcha" rel="noopener">kharcha</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Author</h4>
+        <ul>
+          <li>Akash Priyadarshi</li>
+          <li>Patna, Bihar, India</li>
+          <li><a href="https://github.com/AkashPriyadarshii" rel="noopener">GitHub Profile</a></li>
+          <li><a href="https://akashpriyadarshi.vercel.app" rel="noopener">Personal Portfolio</a></li>
+          <li><a href="https://linkedin.com/in/akash-priyadarshi-1aa51b37a" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://akashpriyadarshii.github.io/Resume/" rel="noopener">Resume</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Social</h4>
+        <ul>
+          <li><a href="https://x.com/Akash__ydv001" rel="noopener">X / Twitter (@Akash__ydv001)</a></li>
+          <li><a href="https://www.threads.net/@akash.priyadarshii" rel="noopener">Threads (@akash.priyadarshii)</a></li>
+          <li><a href="https://www.instagram.com/akash.priyadarshii/" rel="noopener">Instagram (@akash.priyadarshii)</a></li>
+          <li><a href="https://reddit.com/user/DragonfruitWeak2801" rel="noopener">Reddit (u/DragonfruitWeak2801)</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Akash Priyadarshi. Distributed under MIT License. Zero tracking, zero telemetry.
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
