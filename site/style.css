@@ -1000,7 +1000,7 @@ h2 {
 
 .t-line {
   margin-bottom: 6px;
-  word-break: break-all;
+  overflow-wrap: break-word;
 }
 
 .t-prompt {
@@ -1112,6 +1112,10 @@ h2 {
   font-size: 12px;
   line-height: 1.4;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  max-width: 100%;
 }
 
 /* Interactive Failure Mode Switcher (ui-ux-pro-max) */
@@ -1203,6 +1207,7 @@ h2 {
   .pipeline-flow { grid-template-columns: repeat(2, 1fr); }
   .skills-deck { grid-template-columns: 1fr; }
   .hook-split { grid-template-columns: 1fr; }
+  .mode-metric-row { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .site-header { padding: 14px 24px; flex-wrap: wrap; }
   .site-nav { display: none; }
   .nav-toggle { display: flex; flex-direction: column; justify-content: center; }
@@ -1223,6 +1228,10 @@ h2 {
     display: flex;
     align-items: center;
     text-decoration: none;
+    color: var(--grey-1);
+  }
+  .nav-links a:hover {
+    color: var(--magenta-deep);
   }
   .nav-cta { display: none; }
   .breadcrumb { padding: 14px 24px 0; }
@@ -1243,17 +1252,37 @@ h2 {
   .footer { padding: 48px 24px 28px; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
   .author-slab { grid-template-columns: 1fr; gap: var(--space-5); }
+  .sim-bar { padding: 8px 10px; gap: 6px; }
+  .sim-btn { min-height: 36px; padding: 6px 10px; }
+  .terminal-tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .terminal-tab-btn { min-height: 38px; white-space: nowrap; }
+}
+
+@media (max-width: 560px) {
+  .pipeline-flow { grid-template-columns: 1fr; gap: 10px; }
+  .mode-toggle-group { flex-direction: column; width: 100%; }
+  .mode-tab-btn { width: 100%; text-align: center; min-height: 44px; display: flex; align-items: center; justify-content: center; }
 }
 
 @media (max-width: 480px) {
   .hero h1 { font-size: clamp(26px, 9vw, 36px); }
   .stat-num { font-size: 36px; }
-  .stat-row { grid-template-columns: 1fr 1fr; gap: 20px; }
+  .stat-row { grid-template-columns: 1fr 1fr; gap: 16px; }
   .footer-grid { grid-template-columns: 1fr; gap: 28px; }
   .cta h2 { font-size: 32px; }
-  h2 { font-size: clamp(26px, 7vw, 40px); }
-  .hero-actions { flex-direction: column; gap: 10px; }
-  .cta-actions { flex-direction: column; gap: 10px; }
+  h2 { font-size: clamp(24px, 7vw, 32px); }
+  .hero-actions { flex-direction: column; gap: 10px; width: 100%; }
+  .hero-actions .btn { width: 100%; text-align: center; }
+  .cta-actions { flex-direction: column; gap: 10px; width: 100%; }
+  .cta-actions .btn { width: 100%; text-align: center; }
+  .mode-metric-row { grid-template-columns: 1fr; gap: 10px; }
+  .mode-card { padding: 16px; }
+  .author-links { width: 100%; }
+  .author-links a { width: 100%; justify-content: center; }
+  .verdict { font-size: 13px; gap: 8px; }
+  .judge { font-size: 16px; }
+  .sim-bar { padding: 8px; gap: 6px; }
+  .sim-btn { flex: 1 1 calc(50% - 6px); text-align: center; font-size: 11px; padding: 6px 8px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
