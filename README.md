@@ -38,8 +38,6 @@ By **[Akash Priyadarshi](https://github.com/AkashPriyadarshii)**
 
 [Why](#why) • [Core Superpowers](#core-superpowers) • [Dual Backend: Cloud vs Local](#dual-backend-cloud-or-100-local-foss) • [The Toolchain Suite](#the-toolchain-suite) • [Quickstart](#quickstart) • [Usage Guide](docs/USAGE.md) • [Architecture](#architecture) • [Non-Goals](#non-goals) • [Ecosystem](#ecosystem)
 
-*Fuel the next build:* 
-
 </div>
 
 [![stars](https://img.shields.io/github/stars/AkashPriyadarshii/jev-superpowers?style=flat-square&label=stars)](https://github.com/AkashPriyadarshii/jev-superpowers/stargazers)
