@@ -1289,3 +1289,14 @@ h2 {
   html { scroll-behavior: auto; }
   * { transition: none !important; }
 }
+
+
+/* Mobile: code blocks scroll inside their own box, page never pans sideways */
+body{overflow-x:hidden}
+code,pre{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+pre{white-space:pre;word-break:normal}
+:not(pre)>code{white-space:normal;word-break:break-word;overflow-wrap:anywhere}
+table{display:block;max-width:100%;overflow-x:auto}
+img,svg,video{max-width:100%;height:auto}
+img,svg{max-width:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
