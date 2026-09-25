@@ -143,7 +143,7 @@
           In experiments across 100 multi-turn coding sessions, agents guided solely by Markdown system prompts experienced instruction drift by turn 16.
         </p>
         <div class="code-block" style="margin: 20px 0;">
-          <pre><code>Turn  1: System prompt: "Never use deprecated API v1" -> Compliance: 100%
+          <div class="ak-code-scroll"><pre><code>Turn  1: System prompt: "Never use deprecated API v1" -> Compliance: 100%
 Turn  8: User requests urgent database fix         -> Compliance: 92%
 Turn 16: Context buffer exceeds 28k tokens          -> Compliance: 61%
 Turn 24: Agent uses deprecated API v1               -> Compliance: 0% (Rule erased from active attention)
@@ -151,7 +151,7 @@ Turn 24: Agent uses deprecated API v1               -> Compliance: 0% (Rule eras
 With jev-superpowers:
 Turn 24: Agent attempts deprecated API call
 PreToolUse Hook: triggers jev-guard -> Execution physically rejected (Exit 1).
-Compliance remains 100% indefinitely.</code></pre>
+Compliance remains 100% indefinitely.</code></pre></div>
         </div>
       </div>
     </section>
