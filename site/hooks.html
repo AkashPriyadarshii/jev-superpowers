@@ -89,7 +89,7 @@
               Fires before the agent harness executes bash, read, write, or edit tool calls. If the command attempts to add a crate or npm package, <code>jev-scout</code> evaluates the package name against live registry registries. If the command attempts a destructive delete, <code>jev-guard</code> blocks it unless confidence &gt;= 0.80.
             </p>
             <div class="code-block" style="margin-top:12px;">
-              <pre><code>// Claude Code hooks.json configuration
+              <div class="ak-code-scroll"><pre><code>// Claude Code hooks.json configuration
 {
   "PreToolUse": [
     {
@@ -97,7 +97,7 @@
       "command": "bash ~/.agents/jev-superpowers/hooks/pre-tool"
     }
   ]
-}</code></pre>
+}</code></pre></div>
             </div>
           </div>
 
@@ -110,12 +110,12 @@
               Standard git pre-commit hook wired to <code>git-jev</code>. Evaluates the staged patch for architectural integrity, broken imports, and secret exfiltration before committing to git history.
             </p>
             <div class="code-block" style="margin-top:12px;">
-              <pre><code>#!/usr/bin/env bash
+              <div class="ak-code-scroll"><pre><code>#!/usr/bin/env bash
 # .git/hooks/pre-commit
 git-jev check || {
   echo "[BLOCKED] git-jev semantic gate rejected staged changes"
   exit 1
-}</code></pre>
+}</code></pre></div>
             </div>
           </div>
 
@@ -128,13 +128,13 @@ git-jev check || {
               Intercepts the agent's turn completion or exit signal. <code>limpet</code> runs test assertions and compiler diagnostics. If any verification check fails, exit code 1 is returned with failure logs, forcing the agent to stay in context and resolve the issues.
             </p>
             <div class="code-block" style="margin-top:12px;">
-              <pre><code>{
+              <div class="ak-code-scroll"><pre><code>{
   "Stop": [
     {
       "command": "bash ~/.agents/jev-superpowers/hooks/stop"
     }
   ]
-}</code></pre>
+}</code></pre></div>
             </div>
           </div>
         </div>
