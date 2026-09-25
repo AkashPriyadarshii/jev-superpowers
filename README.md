@@ -1,6 +1,4 @@
 ---
-
-**Support:** fuel the next build — [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/AkashPriyadarshi)
 title: "jev-superpowers: Systematic Agentic Skills with TypeSafe Jev & Laya"
 description: "Systematic software development framework for AI coding agents upgraded with TypeSafe Jev and open-weight Laya System One typed decisions, zero-hallucination package vetting, and completion gates."
 canonical: "https://github.com/AkashPriyadarshii/jev-superpowers"
@@ -15,6 +13,8 @@ keywords:
   - coding-agents
   - zero-hallucination
 ---
+
+**Support:** fuel the next build — [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/AkashPriyadarshi)
 
 <!--
 Title: jev-superpowers - Agentic Skills Upgraded with TypeSafe Jev & Open-Weight Laya
