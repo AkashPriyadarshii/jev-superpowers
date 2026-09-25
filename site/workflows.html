@@ -89,10 +89,10 @@
           <li><strong>Systematic Debugging</strong>: When tests fail, logs crash, or an unexpected runtime error occurs.</li>
         </ul>
         <div class="code-block">
-          <pre><code># Session-start hook triggers router evaluation:
+          <div class="ak-code-scroll"><pre><code># Session-start hook triggers router evaluation:
 jev-axi eval "Route workflow for: 'Refactor SQLite connection pool to support WAL mode'" \
   --options "brainstorm,plan,execute,debug" \
-  --context "$GIT_STATUS"</code></pre>
+  --context "$GIT_STATUS"</code></pre></div>
           <button class="copy-btn" data-copy="jev-axi eval &quot;Route workflow for: 'Refactor SQLite connection pool to support WAL mode'&quot; --options &quot;brainstorm,plan,execute,debug&quot;">copy</button>
         </div>
       </div>
@@ -110,10 +110,10 @@ jev-axi eval "Route workflow for: 'Refactor SQLite connection pool to support WA
           Forces agents to propose 2 to 3 distinct implementation approaches (e.g. Minimal Stdlib, High-Throughput Batching, or External Engine). Instead of the agent picking arbitrarily based on token probabilities, it executes <code>jev-axi pick</code>:
         </p>
         <div class="code-block">
-          <pre><code># Rank 3 design approaches against project constraints:
+          <div class="ak-code-scroll"><pre><code># Rank 3 design approaches against project constraints:
 jev-axi pick "Select optimal cache layer" \
   --candidates "approaches.json" \
-  --criteria "Memory budget &lt; 50MB, zero new native deps, sub-millisecond lookups"</code></pre>
+  --criteria "Memory budget &lt; 50MB, zero new native deps, sub-millisecond lookups"</code></pre></div>
           <button class="copy-btn" data-copy="jev-axi pick &quot;Select optimal cache layer&quot; --candidates &quot;approaches.json&quot; --criteria &quot;Memory budget &lt; 50MB, zero new native deps, sub-millisecond lookups&quot;">copy</button>
         </div>
         <p style="font-size:15px; color:var(--grey-1); margin-top:12px;">
@@ -134,13 +134,13 @@ jev-axi pick "Select optimal cache layer" \
           Coding agents frequently hallucinate non-existent package names or select abandoned, vulnerable libraries. In <code>jev-writing-plans</code>, every proposed third-party crate or npm package is vetted through <code>jev-scout</code>:
         </p>
         <div class="code-block">
-          <pre><code># Scout real open-source crates with Jev System One fan-out scoring:
+          <div class="ak-code-scroll"><pre><code># Scout real open-source crates with Jev System One fan-out scoring:
 jev-scout "fast zero-copy trigram search"
 
 # Returns:
 # 1. tgrep (score: 9.8, verified real, 12ms cold start)
 # 2. fst (score: 9.1, standard finite state transducer)
-# Hallucinated entries scored 0.0 and purged from prompt memory.</code></pre>
+# Hallucinated entries scored 0.0 and purged from prompt memory.</code></pre></div>
           <button class="copy-btn" data-copy="jev-scout &quot;fast zero-copy trigram search&quot;">copy</button>
         </div>
       </div>
@@ -158,13 +158,13 @@ jev-scout "fast zero-copy trigram search"
           Executes one bite-sized task at a time. Before running shell commands, <code>jev-guard</code> filters out accidental rm -rf, broad find-deletes, or production leaks. Before creating git commits, <code>git-jev</code> gates the diff:
         </p>
         <div class="code-block">
-          <pre><code># Shell guard halts destructive commands:
+          <div class="ak-code-scroll"><pre><code># Shell guard halts destructive commands:
 jev-guard "git checkout -f master &amp;&amp; git clean -fdx"
 # [BLOCKED] Destructive command detected &middot; confidence: 0.99 &middot; requires manual confirmation
 
 # Pre-commit gate validates staged changes:
 git jev check
-# Evaluates diff against architectural invariants in 110ms.</code></pre>
+# Evaluates diff against architectural invariants in 110ms.</code></pre></div>
           <button class="copy-btn" data-copy="git jev check">copy</button>
         </div>
       </div>
@@ -182,13 +182,13 @@ git jev check
           Dumping raw 2,000-line compiler errors or stack traces into agent context causes context rot and hallucinated explanations. <code>jev-systematic-debugging</code> pipes terminal output directly through Jev triage:
         </p>
         <div class="code-block">
-          <pre><code># Filter noisy build failure into root cause and exact failure location:
+          <div class="ak-code-scroll"><pre><code># Filter noisy build failure into root cause and exact failure location:
 cargo test 2&gt;&amp;1 | jev-axi triage
 
 # Output:
 # [ROOT CAUSE] Lifetime mismatch: borrowed value 'pool' does not live long enough
 # [LOCATION] src/db/pool.rs:142:18
-# [CONFIDENCE] 0.96</code></pre>
+# [CONFIDENCE] 0.96</code></pre></div>
           <button class="copy-btn" data-copy="cargo test 2&gt;&amp;1 | jev-axi triage">copy</button>
         </div>
       </div>
@@ -206,14 +206,14 @@ cargo test 2&gt;&amp;1 | jev-axi triage
           Agents love to say "All done! I have implemented the requested feature." while unit tests fail or code coverage drops. <code>jev-verification</code> binds to the agent harness's Stop hook via <code>limpet</code>:
         </p>
         <div class="code-block">
-          <pre><code># Stop gate executes when agent attempts to terminate turn:
+          <div class="ak-code-scroll"><pre><code># Stop gate executes when agent attempts to terminate turn:
 limpet check
 
 # Checks:
 # 1. Zero compiler errors
 # 2. All unit and integration test assertions green
 # 3. Supercov quality score &gt;= 0.85
-# If any check fails, limpet exits 1 and feeds failure back to the agent runtime.</code></pre>
+# If any check fails, limpet exits 1 and feeds failure back to the agent runtime.</code></pre></div>
           <button class="copy-btn" data-copy="limpet check">copy</button>
         </div>
       </div>
