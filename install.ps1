@@ -63,12 +63,12 @@ if (!$env:TYPESAFE_API_KEY -and !$hasLocal) {
     Write-Host "  Cloud: Get your free API key at https://console.typesafe.ai"
     Write-Host "  Local FOSS: Run Laya via 'python scripts/serve-laya.py' and set:"
     Write-Host "    `$env:TYPESAFE_BASE_URL = 'http://127.0.0.1:8000'"
-    Write-Host "    `$env:TYPESAFE_API_KEY = 'local-laya'"
+    Write-Host "    `$env:TYPESAFE_API_KEY = 'local'"
     $missing++
 } elseif ($hasLocal) {
     Write-Host "`n✔ Local FOSS System 1 backend configured ($($env:TYPESAFE_BASE_URL) / Laya)." -ForegroundColor Green
     if (!$env:TYPESAFE_API_KEY) {
-        $env:TYPESAFE_API_KEY = "local-laya"
+        $env:TYPESAFE_API_KEY = "local"
     }
 } else {
     Write-Host "`n✔ TYPESAFE_API_KEY is configured." -ForegroundColor Green

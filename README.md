@@ -153,7 +153,7 @@ python scripts/serve-laya.py --port 8000 &
 
 # 3. Export local routing (Zero cloud tokens, 100% air-gapped)
 export TYPESAFE_BASE_URL="http://127.0.0.1:8000"
-export TYPESAFE_API_KEY="local-laya"
+export TYPESAFE_API_KEY="local"
 
 # 4. Run installer
 bash install.sh
