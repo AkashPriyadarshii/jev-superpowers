@@ -1,0 +1,5 @@
+# Generated assets and local state
+venv/
+*.pyc
+__pycache__/
+.scanner-cache/

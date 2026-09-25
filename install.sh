@@ -57,11 +57,12 @@ if [ -z "${TYPESAFE_API_KEY:-}" ] && [ "$has_local" -eq 0 ]; then
     echo "  Cloud: Get your free API key at: https://console.typesafe.ai"
     echo "  Local FOSS: Run Laya via 'python scripts/serve-laya.py' and export:"
     echo "    export TYPESAFE_BASE_URL=\"http://127.0.0.1:8000\""
-    echo "    export TYPESAFE_API_KEY=\"local-laya\""
+    echo "    export TYPESAFE_API_KEY=\"local\""
     exit 1
 elif [ "$has_local" -eq 1 ]; then
     echo "✔ Local FOSS System 1 backend configured (${TYPESAFE_BASE_URL:-http://127.0.0.1:8000} / Laya)."
-    export TYPESAFE_API_KEY="${TYPESAFE_API_KEY:-local-laya}"
+    : "${JEV_LOCAL_KEY:=local}"
+    export TYPESAFE_API_KEY="${TYPESAFE_API_KEY:-$JEV_LOCAL_KEY}"
 else
     echo "✔ TYPESAFE_API_KEY is configured."
 fi

@@ -11,7 +11,7 @@ Backends:
 Usage:
   python scripts/serve-laya.py --port 8000
   export TYPESAFE_BASE_URL="http://127.0.0.1:8000"
-  export TYPESAFE_API_KEY="local-laya"
+  export TYPESAFE_API_KEY="local"
 """
 
 import argparse
