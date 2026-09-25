@@ -130,13 +130,13 @@
           In <code>jev-superpowers</code>, any destructive action, package deletion, git force-push, or branch cleanup requires a minimum confidence of 0.80:
         </p>
         <div class="code-block" style="max-width: 680px; margin: 16px 0;">
-          <pre><code>// Rust enforcement in hooks/pre-tool
+          <div class="ak-code-scroll"><pre><code>// Rust enforcement in hooks/pre-tool
 if action.is_destructive() {
     if judgment.confidence &lt; 0.80 {
         eprintln!("[BLOCKED] Destructive command rejected: confidence {} &lt; 0.80", judgment.confidence);
         std::process::exit(1);
     }
-}</code></pre>
+}</code></pre></div>
           <button class="copy-btn" data-copy="if judgment.confidence &lt; 0.80 { std::process::exit(1); }">copy</button>
         </div>
         <p style="font-size:15px; color:var(--grey-1); line-height:1.6;">
@@ -157,7 +157,7 @@ if action.is_destructive() {
           System One ingests repository state once and batches independent questions in a single request:
         </p>
         <div class="code-block">
-          <pre><code>POST https://api.typesafe.ai/v1/systemone
+          <div class="ak-code-scroll"><pre><code>POST https://api.typesafe.ai/v1/systemone
 {
   "state": "Git staged diff (240 lines) + test failure output",
   "questions": [
@@ -167,7 +167,7 @@ if action.is_destructive() {
   ]
 }
 
-// Result: 92ms total for all evaluations &middot; $0.0003 cost</code></pre>
+// Result: 92ms total for all evaluations &middot; $0.0003 cost</code></pre></div>
           <button class="copy-btn" data-copy="POST https://api.typesafe.ai/v1/systemone">copy</button>
         </div>
       </div>
