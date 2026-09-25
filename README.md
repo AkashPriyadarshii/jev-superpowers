@@ -36,6 +36,8 @@ By **[Akash Priyadarshi](https://github.com/AkashPriyadarshii)**
 
 [Why](#why) • [Core Superpowers](#core-superpowers) • [Dual Backend: Cloud vs Local](#dual-backend-cloud-or-100-local-foss) • [The Toolchain Suite](#the-toolchain-suite) • [Quickstart](#quickstart) • [Usage Guide](docs/USAGE.md) • [Architecture](#architecture) • [Non-Goals](#non-goals) • [Ecosystem](#ecosystem)
 
+*Fuel the next build:* [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/AkashPriyadarshi)
+
 </div>
 
 [![stars](https://img.shields.io/github/stars/AkashPriyadarshii/jev-superpowers?style=flat-square&label=stars)](https://github.com/AkashPriyadarshii/jev-superpowers/stargazers)
@@ -273,7 +275,7 @@ jev-superpowers/
 Patna, Bihar, India  
 * GitHub: [@AkashPriyadarshii](https://github.com/AkashPriyadarshii)  
 * Portfolio: [akashpriyadarshi.vercel.app](https://akashpriyadarshi.vercel.app)  
-* LinkedIn: [Akash Priyadarshi](https://linkedin.com/in/akash-priyadarshi-1aa51b37a)  
+* LinkedIn: [Akash Priyadarshi](https://linkedin.com/in/akashpriyadarshii)  
 * Resume: [akashpriyadarshii.github.io/Resume](https://akashpriyadarshii.github.io/Resume/)  
 
 **Social:** [X / Twitter](https://x.com/Akash__ydv001) • [Threads](https://www.threads.net/@akash.priyadarshii) • [Instagram](https://www.instagram.com/akash.priyadarshii/) • [Reddit](https://reddit.com/user/akashpriyadarshi)
