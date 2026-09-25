@@ -62,7 +62,8 @@ if [ -z "${TYPESAFE_API_KEY:-}" ] && [ "$has_local" -eq 0 ]; then
 elif [ "$has_local" -eq 1 ]; then
     echo "✔ Local FOSS System 1 backend configured (${TYPESAFE_BASE_URL:-http://127.0.0.1:8000} / Laya)."
     : "${JEV_LOCAL_KEY:=local}"
-    export TYPESAFE_API_KEY="${TYPESAFE_API_KEY:-$JEV_LOCAL_KEY}"
+    : "${TYPESAFE_API_KEY:=$JEV_LOCAL_KEY}"
+    export TYPESAFE_API_KEY
 else
     echo "✔ TYPESAFE_API_KEY is configured."
 fi
